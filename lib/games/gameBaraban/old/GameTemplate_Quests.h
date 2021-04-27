@@ -1,0 +1,11 @@
+	#ifdef DEBUG_BUILD
+	LcdStringUpdate(1,LCD_LINE_2, (char*)"Quests        ");
+	#endif
+	Quest.setQuestsNum(TemporaryClass::QUESTS_NUM - 1);
+	Quest.registerNew(TemporaryClass::QID_FIRST,				(char*)"найти смысл жизни");
+	Quest.registerNew(TemporaryClass::QID_FIND_BAR,				(char*)"дойти до бара");
+	//	Quest.registerNew(TemporaryClass::QID_FIND_BAR,				tmp);
+//	Quest.registerNew(TemporaryClass::QID_FIND_KEY,				(char*)"найти ключ от лабы");
+	//	Quest.registerNew(TemporaryClass::QID_FIND_BARMAN,			(char*)"найти пропавшего бармена");
+	//	sprintf(tmp,"найти пропавшего бармена");
+	//	Quest.registerNew(TemporaryClass::QID_FIND_BAR,				tmp);

@@ -1,0 +1,204 @@
+void LcdInit ( void )    //инициализация SPI и дисплея
+        {
+//		LcdCache [LCD_CACHSIZE]=255;
+//        LCD_RST_PORT.LCD_RST_PIN = 1;       //настроили порты ввода/вывода
+//		sbi(LCD_RST_PORT,LCD_RST_PIN);       //настроили порты ввода/вывода
+//        LCD_RST_DDR.LCD_RST_PIN = LCD_DC_DDR.LCD_DC_PIN = LCD_CDDR.LCD_CPIN = LCD_MOSI_DDR.LCD_MOSI_PIN = LCD_CLK_DDR.LCD_CLK_PIN = 1;
+		sbi(LCD_RST_DDR, LCD_RST_PIN);
+		//HAL.IO.setDirOut(LCD_RST_PIN_HAL);
+		sbi(LCD_DC_DDR, LCD_DC_PIN);
+		//HAL.IO.setDirOut(LCD_DC_PIN_HAL);
+		sbi(LCD_SS_DDR, LCD_SS_PIN);
+		//HAL.IO.setDirOut(LCD_SS_PIN_HAL);
+		sbi(LCD_MOSI_DDR, LCD_MOSI_PIN);
+		//HAL.IO.setDirOut(LCD_MOSI_PIN_HAL);
+		
+		sbi(LCD_CLK_DDR, LCD_CLK_PIN);
+		cbi(LCD_CLK_PORT, LCD_CLK_PIN);
+		//HAL.IO.setDirOut(LCD_CLK_PIN_HAL);
+		//HAL.IO.setOutLow(LCD_CLK_PIN_HAL);
+//        LCD_RST_DDR.LCD_RST_PIN = LCD_DC_DDR.LCD_DC_PIN = LCD_CDDR.LCD_CPIN = LCD_MOSI_DDR.LCD_MOSI_PIN = LCD_CLK_DDR.LCD_CLK_PIN = LCD_CLK_DDR1.LCD_CLK_PIN1 = 1;
+//        LCD_CLK_PORT.LCD_CLK_PIN = 0;
+//        LCD_CLK_PORT1.LCD_CLK_PIN1 = 0;
+//            #ifndef SOFT_SPI
+//        LCD_SS_DDR.LCD_SS_PIN = 1;
+//        LCD_SS_PORT.LCD_SS_PIN = 0;
+//            #endif
+        _delay_ms(1);
+            #ifndef SOFT_SPI
+#ifdef ATMEL_STUDIO
+//	LCD_SPI.CTRL	= 1<<7 | 1<<6 | 0<<5 | 1<<4 | (0<<3 | 0<<2) | (0<<1 | 0<<0);
+//					  [double CLK]	[enable][DORD] [master][transfer mode][clk prescaller]
+//	LCD_SPI.CTRL	= 1<<7			| 1<<6	| 0<<5 | 1<<4 | (0<<3 | 0<<2) | (0<<1 | 0<<0);
+	LCD_SPI.CTRL	= 0<<7			| 1<<6	| 0<<5 | 1<<4 | (0<<3 | 0<<2) | (1<<1 | 1<<0);
+	LCD_SPI.INTCTRL = SPI_INTLVL_OFF_gc ; // no interrupt
+#else
+        SPCR = LCD_SPCR_VAL;
+        SPSR = LCD_SPSR_VAL;
+#endif
+            #endif
+//        LCD_RST_PORT.LCD_RST_PIN = 0;       //дернули ресет
+        cbi(LCD_RST_PORT,LCD_RST_PIN);       //дернули ресет
+		//HAL.IO.setOutLow(LCD_RST_PIN_HAL);//дернули ресет
+        _delay_ms(20);
+//        LCD_RST_PORT.LCD_RST_PIN = 1;
+        sbi(LCD_RST_PORT, LCD_RST_PIN);
+		//HAL.IO.setOutHigh(LCD_RST_PIN_HAL);
+                            //Enable SPI port: No interrupt, MSBit first, Master mode, CPOL->0, CPHA->0, Clk/4
+
+//        LCD_CPORT.LCD_CPIN = 1;        //Disable LCD controller
+        sbi(LCD_SS_PORT, LCD_SS_PIN);        //Disable LCD controller
+		//HAL.IO.setOutHigh(LCD_SS_PIN_HAL);
+
+        LcdSend( 0b00100001, LCD_CMD );                         //LCD Extended Commands
+        LcdSend( 0b00000100+LCD_TEMP_CONTROL, LCD_CMD );                     //Set Temp coefficent
+        #ifdef china
+			LcdSend( 0b00001000|LCD_SPI_INVERT<<3, LCD_CMD );                     //порядок битов в SPI
+        #endif
+//return;
+		LcdSend( 0b00010000+LCD_BIAS, LCD_CMD );                         //LCD bias mode 1:48
+        #ifdef china
+			LcdSend( 0b01000000+LCD_SHIFT, LCD_CMD );                         //первая строка выше экрана, отображаем со второй
+        #endif
+		LcdSend( 0b10000000+LCD_VOP, LCD_CMD );                         //Set LCD Vop (Contrast)
+    
+        #ifdef china
+//    LcdSend( 0x20|LCD_X_MIRROR<<4|LCD_Y_MIRROR<<3|power_down<<2, LCD_CMD );            //LCD Standard Commands
+    LcdSend( 0x20|LCD_X_MIRROR<<4|LCD_Y_MIRROR<<3|0<<2, LCD_CMD );            //LCD Standard Commands
+            #endif
+//        LcdSend( 0x20|power_down<<2|LCD_ADDRESSING<<1, LCD_CMD );                //LCD Standard Commands
+        LcdSend( 0x20|0<<2|LCD_ADDRESSING<<1, LCD_CMD );                //LCD Standard Commands
+        LcdSend( 0b00001000|((LCD_DISP_CONFIG<<1|LCD_DISP_CONFIG)&0b00000101), LCD_CMD );     //LCD mode
+//        LcdClear();
+        LcdClearUpdate();
+        }
+
+/*
+void LcdInit ( void )    //инициализация SPI и дисплея
+        {
+//        LCD_PORT.LCD_RST_PIN = 1;       //настроили порты ввода/вывода
+        LCD_RST_PORT.LCD_RST_PIN = 1;       //настроили порты ввода/вывода
+//        LCD_DDR.LCD_RST_PIN = LCD_DDR.LCD_DC_PIN = LCD_DDR.LCD_CE_PIN = LCD_DDR.SPI_MOSI_PIN = LCD_DDR.SPI_CLK_PIN = 1;
+        LCD_RST_DDR.LCD_RST_PIN = LCD_DC_DDR.LCD_DC_PIN = LCD_CDDR.LCD_CPIN = LCD_MOSI_DDR.LCD_MOSI_PIN = LCD_CLK_DDR.LCD_CLK_PIN = 1;
+        LCD_CLK_PORT.LCD_CLK_PIN = 0;
+//        delay_ms(1);
+//НОВОЕ!!!
+            #ifndef SOFT_SPI
+        LCD_SS_DDR.LCD_SS_PIN = 1;
+        LCD_SS_PORT.LCD_SS_PIN = 0;
+            #endif
+        delay_ms(1);
+            #ifndef SOFT_SPI
+        SPCR = SPCR_val;
+        SPSR = SPSR_val;
+            #endif
+//        SPCR = 0x50;
+//        LCD_PORT.LCD_RST_PIN = 0;       //дернули ресет
+        LCD_RST_PORT.LCD_RST_PIN = 0;       //дернули ресет
+//        delay_ms(10);
+        delay_ms(20);
+//        LCD_PORT.LCD_RST_PIN = 1;
+        LCD_RST_PORT.LCD_RST_PIN = 1;
+                            //Enable SPI port: No interrupt, MSBit first, Master mode, CPOL->0, CPHA->0, Clk/4
+
+//        LCD_PORT.LCD_CE_PIN = 1;        //Disable LCD controller
+        LCD_CPORT.LCD_CPIN = 1;        //Disable LCD controller
+
+        LcdSend( 0b00100001, LCD_CMD );                         //LCD Extended Commands
+//было закоменчено!
+////        LcdSend( 0b00000100+temp_control, LCD_CMD );                     //Set Temp coefficent
+        LcdSend( 0b00000100+temp_control, LCD_CMD );                     //Set Temp coefficent
+            #ifdef china
+        LcdSend( 0b00001000|SPI_invert<<3, LCD_CMD );                     //порядок битов в SPI
+        #endif
+        LcdSend( 0b00010000+bias, LCD_CMD );                         //LCD bias mode 1:48
+            #ifdef china
+        LcdSend( 0b01000000+shift, LCD_CMD );                         //первая строка выше экрана, отображаем со второй
+        #endif
+    LcdSend( 0b10000000+Vop, LCD_CMD );                         //Set LCD Vop (Contrast)
+    
+        #ifdef china
+//    LcdSend( 0x20|x_mirror<<5|y_mirror<<4|power_down<<3, LCD_CMD );            //LCD Standard Commands
+    LcdSend( 0x20|x_mirror<<4|y_mirror<<3|power_down<<2, LCD_CMD );            //LCD Standard Commands
+            #endif
+                #ifndef china
+//        LcdSend( 0x20|power_down<<3|LCD_ADDRESSING<<2, LCD_CMD );                //LCD Standard Commands
+        LcdSend( 0x20|power_down<<2|LCD_ADDRESSING<<1, LCD_CMD );                //LCD Standard Commands
+                #endif
+        LcdSend( 0b00001000|((disp_config<<1|disp_config)&0b00000101), LCD_CMD );     //LCD mode
+        LcdClear();
+        }
+*/
+void LcdSend (unsigned char data, unsigned char cmd)    //Sends data to display controller
+        {
+//			unsigned char tmp=0;
+        #ifdef SOFT_SPI
+        unsigned char i, mask = 128;
+        #endif
+//		unsigned char result;
+        
+//        LCD_CPORT.LCD_CPIN = 0;                //Enable display controller (active low)
+        cbi(LCD_SS_PORT,LCD_SS_PIN);                //Enable display controller (active low)
+		//HAL.IO.setOutLow(LCD_SS_PIN_HAL);
+        if (cmd)
+			{
+//            LCD_DC_PORT.LCD_DC_PIN = 1;    //выбираем команда или данные
+			sbi(LCD_DC_PORT,LCD_DC_PIN);    //выбираем команда или данные
+			//HAL.IO.setOutHigh(LCD_DC_PIN_HAL);
+			}
+        else
+			{
+//            LCD_DC_PORT.LCD_DC_PIN = 0;
+            cbi(LCD_DC_PORT,LCD_DC_PIN);
+			//HAL.IO.setOutLow(LCD_DC_PIN_HAL);
+			}
+        #ifdef SOFT_SPI
+        for (i=0;i<8;i++)
+            {
+            if ((data&mask)!=0)
+				{
+//                LCD_MOSI_PORT.LCD_MOSI_PIN = 1; 
+                sbi(LCD_MOSI_PORT,LCD_MOSI_PIN); 
+				}
+            else
+				{
+//                LCD_MOSI_PORT.LCD_MOSI_PIN = 0;
+                cbi(LCD_MOSI_PORT,LCD_MOSI_PIN); 
+				}
+//            mask = mask/2;// >>1 ???
+            mask = mask>>1;// >>1 ???
+//            LCD_CLK_PORT.LCD_CLK_PIN = 1;
+            sbi(LCD_CLK_PORT,LCD_CLK_PIN);
+//            LCD_CLK_PORT1.LCD_CLK_PIN1 = 1;
+            delay_us(1);
+//            LCD_CLK_PORT.LCD_CLK_PIN = 0;
+            cbi(LCD_CLK_PORT,LCD_CLK_PIN);
+//            LCD_CLK_PORT1.LCD_CLK_PIN1 = 0;
+            } 
+        #endif
+
+        #ifndef SOFT_SPI
+#ifdef ATMEL_STUDIO
+        LCD_SPI.DATA	= data;
+		while (!(LCD_SPI.STATUS & SPI_IF_bm))
+			{
+			}        //Wait Interrupt
+#else
+        SPDR = data;                            //Send data to display controller
+        while ( (SPSR & 0x80) != 0x80 );        //Wait until Tx register empty
+#endif
+        #endif
+        
+//        LCD_CPORT.LCD_CPIN = 1;                //Disable display controller
+        sbi(LCD_SS_PORT,LCD_SS_PIN);                //Disable display controller
+		//HAL.IO.setOutHigh(LCD_SS_PIN_HAL);//Disable display controller
+        }
+/*
+void LcdStartDMAUpdate (void)
+	{
+	LcdSend(0x80, LCD_CMD);        //команды установки указателя памяти дисплея на 0,0
+	LcdSend(0x40, LCD_CMD);
+	cbi(LCD_DC_PORT,LCD_DC_PIN);// выбираем данные
+	//TODO...
+	}
+*/
