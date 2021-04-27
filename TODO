@@ -1,3 +1,6 @@
 * Make OpenPDA API. It should be platform-independ. Something like: interrupts.one_ms() (and other) & OpenPDA.run(). On any CPU.
 * port to STM32F103C8T6
-
+* Make a logo...
+* Make a 866 MHz version
+* Lcd should be more abstract. Should be run on ANY display.
+* Make a wiki
