@@ -15,7 +15,7 @@
     <AssemblyName>OpenPDA_ATxmega128A1U</AssemblyName>
     <Name>OpenPDA_ATxmega128A1U</Name>
     <RootNamespace>OpenPDA_ATxmega128A1U</RootNamespace>
-    <ToolchainFlavour>10.1</ToolchainFlavour>
+    <ToolchainFlavour>VASYA_CPP</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
@@ -736,9 +736,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\RandomPseudo.hpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\runlevels.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\RuntimeClass.hpp">

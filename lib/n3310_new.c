@@ -562,7 +562,10 @@ uint8_t LcdChr ( LcdFontSize size, uint8_t ch )
 		// Смещение в таблице для символов ASCII[0x20-0x7F]
 		ch -= 32;
 		}
-	else if ( ch >= 0xC0 )
+	else if ( ch >= 0xC0 )//C0 == 192
+	//Ё - 168
+	//ё - 184
+	//№ - 185
 		{
 		// Смещение в таблице для символов CP1251[0xC0-0xFF]
 	    ch -= 96;
