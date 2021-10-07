@@ -120,6 +120,7 @@ bool UsableItemClass::use(void)
     {
     case ITEM_TYPE_RESOURCE:
       {
+	  TODO('hack: should be something like: if containEffect than ProcessEffects')
       if (GameCFG.ItemTemplate.GetItemEffect(this->connectedItem.GetID()) != &PlayerEffects.PlayerEffect_NullEffect)
         {
         return this->ProcessMedicaments();

@@ -1,6 +1,8 @@
 #ifndef SOUND_LIST_H
 #define SOUND_LIST_H
 
+//15625 Hz Mono
+
 TODO("Achtung! 0x01 at the end of file cause sound cracks");
 
 TODO("Make WAV head recognition")
