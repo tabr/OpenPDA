@@ -35,3 +35,26 @@ void InGameEvent_BlowoutClass::Task (void)
 		--this->BlowoutSoundTimer;
 		}
 	}
+
+void InGameEvent_BlowoutPrepareClass::Task (void)
+	{
+	if (Player.IsDead())
+		{
+		return;
+		}
+	if (this->BlowoutSoundTimer == 0xFF){
+		this->BlowoutSoundTimer = 5;
+		//PDASound.PlaylistAdd(Sound::SID_KOALSKY_2);
+		//PDASound.PlaylistAdd(Sound::SID_KOALSKY_4);
+	}
+	if (this->BlowoutSoundTimer == 0)
+		{
+		PDASound.PlaylistAdd(Sound::SID_BLOWOUT_HIT_2);
+		this->BlowoutSoundTimer = 5+(rand()%30);
+		}
+	else
+		{
+		--this->BlowoutSoundTimer;
+		}
+	}
+		

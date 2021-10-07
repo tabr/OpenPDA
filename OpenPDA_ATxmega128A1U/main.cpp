@@ -105,18 +105,20 @@ static Singleton& instance()
 #define SOUNDS_ON_MEDIAFLASH
 #endif //LOAD_SOUNDS
 
-// #define MASTER_PDA
-// #define DEBUG_BUILD
+//#define MASTER_PDA
+//#define DEBUG_BUILD
 //#define TIMESYNC_BYPASS
 //#define UNLIMITED_ITEMS
-//#define FM_DISABLED
+#define FM_DISABLED
 //#define MONOLIT_PSY_SOUND_MUTE
 //#define MONOLIT_PSY_IMMUNE
 //#define ASWAYS_SLEEP //does not works
 //#define FAKE_ADC_POWER
 //#define SLOWLY_KILL
-//#define IDDQD  //not fully tested
-//#define CRC_TABLE_RAM //512 bytes
+#define IDDQD  //not fully tested
+#ifndef DEBUG_BUILD
+	#define CRC_TABLE_RAM //512 bytes
+#endif
 #define BATTERY_ADC12BIT
 #define RFM69_HW_CRC
 #define RFM69_FREQUENCY           (446*MHZ_1)
@@ -402,7 +404,7 @@ ItemInformationClass ItemInformation;
 ActionsClass PlayerActions;
 //Class_StalkerLayer2 StalkerLayer2;
 Class_StalkerLayer2* StalkerLayer2;
-uint8_t PsyBeepKeepOnHack  = 0;
+//uint8_t PsyBeepKeepOnHack  = 0;
 
 EventSystemClass EventSystem;
 //DamageClass PlayerDamage;
@@ -412,6 +414,7 @@ HackableComputerClass HackableComputer;
 InGameEventsClass InGameEvents;
 //TWI UserEEPROM=TWI(&TWIC, TWI_EEPROM_TWI_ADDRESS, TWI_EEPROM_SPEED_KHZ);
 InGameEvent_BlowoutClass BlowoutEvent;
+InGameEvent_BlowoutPrepareClass BlowoutPrepareEvent;
 InGameEvent_RadStormClass RadStormEvent;
 InGameEvent_SleepTimeClass SleepEvent;
 EEPROM_DataClass EEPROM_Data;

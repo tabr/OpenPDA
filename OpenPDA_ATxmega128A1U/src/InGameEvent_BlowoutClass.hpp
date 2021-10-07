@@ -31,6 +31,18 @@ class  InGameEvent_BlowoutClass : public Runnable
   private:
   uint8_t  BlowoutSoundTimer  =  0;
   };
+class  InGameEvent_BlowoutPrepareClass : public Runnable
+{
+	public:
+	void  Task  (void);
+	uint8_t  getRepeatTime(void)
+	{
+		return  0;
+	}
+	protected:
+	private:
+	uint8_t  BlowoutSoundTimer  =  0xFF;
+};
 
 
 
