@@ -35,7 +35,7 @@ void Class_StalkerLayer2::TimerUpdateEvent (uint8_t msPassed)
 Class_StalkerLayer2::Class_StalkerLayer2(void)
 	{
 	this->cleanBuf();
-  memset(this->buf, 0, sizeof(this->buf));
+  //memset(this->buf, 0, sizeof(this->buf));
 	//this->TaskEnvironmentLookAround.SetLinkedObject(this);
 	//this->TaskEnvironmentProcess.SetLinkedObject(this);
 	}
@@ -50,6 +50,8 @@ void Class_StalkerLayer2::cleanBuf(void)
 			}
 		}*/
 	//memset(this->buf, 0, (Class_HAL::MAX_ENV_PACKETS_IN_TRANSACTION * this->NUM_PACKET_PARAMETERS));//кагбэ въуй не впилось
+	TODO('check this')
+	memset(this->buf, 0, (Class_HAL::MAX_ENV_PACKETS_IN_TRANSACTION * sizeof(L2_Packet_struct)));//seems too be sometimes processing old data
 	this->bufPointer	= 0;
 	}
 void Class_StalkerLayer2::programmStart(void)

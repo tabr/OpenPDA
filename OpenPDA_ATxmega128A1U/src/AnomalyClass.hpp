@@ -34,6 +34,7 @@ class  AnomalyClass : public ITimerListener,  public  NodeProcessor
   public:
     const  static  AnomalyType_t  AID_NONE            =  0;
     const  static  AnomalyType_t  MAX_ANOMALY_LEVEL        =  100;
+	//const  static uint8_t ANOMALY_STRENGHT_MIN_LEVEL = 4;
     const static uint16_t  ANOMALY_SOUND_THRESHOLD      =  120;
   
 
@@ -54,6 +55,7 @@ class  AnomalyClass : public ITimerListener,  public  NodeProcessor
     void  CleanFilter(void);
     AnomalyName_t  getAnomalyName(AnomalyID_t  AID);
     AnomalyName_t  getLastMeetAnomalyName(void);
+    AnomalyID_t  getLastMeetAnomalyID(void);
     //void  setAnomaliesNum(AnomaliesNum  size);                                //ВНИМАНИЕ!!!  Задаётся  нулевая  аномалия
 //    void  registerNew(AnomalyName  tmpName,  damageSource  dmgSrc);
     void  RegisterNew(AnomalyID_t  AID,  AnomalyName_t  tmpName,  DamageSource_t  dmgSrc);          //ВНИМАНИЕ!!!  Нулевая  аномалия  уже  определена,  нумерацию  начинать  с  "1"!!!
@@ -61,7 +63,10 @@ class  AnomalyClass : public ITimerListener,  public  NodeProcessor
     DamageSource_t  getDamageSource(void);
     AnomaliesNum_t  getAnomaiesNum(void);
     AnomalyInstance*  GetAnomaly(AnomalyID_t  AID);
+    //AnomalyInstance*  GetLastAnomaly(AnomalyID_t  AID);
+	
     NodeExtended*  GetContainer(void);
+    uint8_t  m_strength            =  0;
   protected:
   private:
 //    AnomaliesNum  getContainerSize(void);
@@ -71,7 +76,7 @@ class  AnomalyClass : public ITimerListener,  public  NodeProcessor
     uint8_t  m_skipLevel            =  0;
     uint8_t  m_killLevel            =  0;
     uint8_t  m_lastMeetType          =  0;
-    uint8_t  m_strength            =  0;
+//    uint8_t  m_strength            =  0;
     //AnomaliesNum  m_Num            =  0;
     uint16_t  m_soundCounter          =  0;
     uint16_t  m_damageSum          =  0;

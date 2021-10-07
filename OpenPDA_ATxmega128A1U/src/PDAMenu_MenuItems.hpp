@@ -51,6 +51,7 @@
 #include  "PDAMenu_Menuitems\PDAMenu_UndertakerClass.hpp"
 #include  "PDAMenu_Menuitems\PDAMenu_MagicClass.hpp"
 #include  "PDAMenu_Menuitems\PDAMenu_SignalScannerClass.hpp"
+#include  "PDAMenu_Menuitems\PDAMenu_AnomalyScanClass.hpp"
 
 
 

@@ -38,6 +38,7 @@ class  PDAMenu_MainInterface
       MENUID_COMPUTER_HACK,
       MENUID_ACTIVE_EFFECTS,
       MENUID_SIGNAL_SCANNER,
+      MENUID_ANOMALY_SCANNER,
 //      MENUID_,
       //      MENUID_SPECS,
       MENUID_NUM,

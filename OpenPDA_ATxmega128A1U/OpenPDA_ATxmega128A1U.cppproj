@@ -303,7 +303,7 @@
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>../../lib</Value>
-            <Value>../../lib/games/GameMalyar_20181027</Value>
+            <Value>../../lib/games/GameMalyar_20211001</Value>
             <Value>../../lib/neiverio</Value>
             <Value>../../lib/neiverio/XMega</Value>
             <Value>../src/ASF/xmega/drivers/cpu</Value>
@@ -643,6 +643,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\PDAMenu_Menuitems\PDAMenu_ActionSuicideClass.hpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\PDAMenu_Menuitems\PDAMenu_AnomalyScanClass.hpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\PDAMenu_Menuitems\PDAMenu_LastMeetAnomalyClass.hpp">

@@ -112,7 +112,20 @@ void  AnomalyClass::setLevelType_Filter  (uint8_t  level,  AnomalyID_t  AID,  ui
   LcdUpdate();
 //  delay_ms(10);
 */
-  this->m_strength    =  (level  +  this->m_strength)  /  2;
+  //this->m_strength    =  (level  +  this->m_strength)  /  2;
+  this->m_strength    =  (level  +  this->m_strength)  >> 1;//seems too be sometimes processing old data fix
+  //=>seems too be sometimes processing old data
+  /*
+  if (this->m_strength < this->ANOMALY_STRENGHT_MIN_LEVEL){
+	  this->m_strength = 0;
+  }
+  if (this->m_strength == 0){
+	  AID = 0;
+	  skipLevel = 0;
+	  killLevel = 0;
+  }
+  */
+  //<-seems too be sometimes processing old data
 //  this->m_strength    =  (this->m_strength>>1);
   this->m_AID        =  AID;
   this->m_skipLevel    =  skipLevel;
@@ -185,9 +198,13 @@ AnomalyName_t  AnomalyClass::getAnomalyName(AnomalyID_t  AID)
   return  this->GetAnomaly(AID)->GetName();
   }
 AnomalyName_t  AnomalyClass::getLastMeetAnomalyName(void)
-  {
-  return  this->getAnomalyName(this->m_lastMeetType);
-  }
+{
+	return this->getAnomalyName(this->m_lastMeetType);
+}
+AnomalyID_t  AnomalyClass::getLastMeetAnomalyID(void)
+{
+	return    this->m_lastMeetType;
+}
 /*
 void  AnomalyClass::setAnomaliesNum(AnomaliesNum  size)
   {
@@ -202,6 +219,12 @@ AnomalyInstance*  AnomalyClass::GetAnomaly(AnomalyID_t  AID)
   {
   return  static_cast<AnomalyInstance*>(this->GetNode(AID));
   }
+/*
+AnomalyInstance*  AnomalyClass::GetLastAnomaly(void)
+{
+	return  this->GetAnomaly(this->m_lastMeetType);
+}
+*/
 void  AnomalyClass::RegisterNew(AnomalyID_t  AID,  AnomalyName_t  aName,  DamageSource_t  dmgSrc)
   {
   /*

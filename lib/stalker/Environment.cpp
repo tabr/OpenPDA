@@ -201,18 +201,19 @@ void Environment::setPsyLevelFilter(PsyLevel_t value)
 		}
 	else
 		{
-		if (PsyBeepKeepOnHack == 0)
-      {
+		//if (PsyBeepKeepOnHack == 0)
+      //{
       PDASound.stopSoundsPsy();
-      }
-    else
-      {
+      //}
+    //else
+      //{
       //if (--PsyBeepKeepOnHack == 0)
-        {
+        //{
         //PDASound.stopSoundsPsy();
-        }
-      }
+        //}
+      //}
 		}
+	TODO('make update via PsyUpdate object')
 	if (PDAMenu.getSelectedMenuID() == PDAMenu_MainInterface::MENUID_MAIN)
 		Lcd.IsEnvPsyLevelNeedRedraw	= true;
 	}

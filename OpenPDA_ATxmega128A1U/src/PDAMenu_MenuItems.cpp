@@ -3163,3 +3163,68 @@ void PDAMenuSpecsClass::buttonPressed(ButtonsClass::BUTTONS btn)
   }
 
 */
+/////////////////////////////////////////////////////////
+void PDAMenu_AnomalyScanClass::JustSelected(void)
+  {
+  #warning "[T] REMOVE ram string"
+  sprintf(Lcd.lcd_buf, "AnomalyScanner");
+  LcdString(1, LCD_LINE_1);
+  }
+void PDAMenu_AnomalyScanClass::Update(uint8_t msPassed)
+  {
+  static uint16_t oneSecond_msCounter=0;
+  static uint16_t scan_buf[3] = {0,0,0};
+  oneSecond_msCounter+=msPassed;
+
+  if (oneSecond_msCounter < 500)
+    {
+    return;
+    }
+	//AnomalyInstance* a = Anomaly.m_strength
+	//Env.GetPsyLevel
+  oneSecond_msCounter-=500;
+  if (Anomaly.m_strength < 30)
+  {
+	  return;
+  }
+  AnomalyID_t AID = Anomaly.getLastMeetAnomalyID();
+  if (AID == TemporaryClass::ANOMALY_ID_JARKA){
+	  AID = 0;
+  } else if (AID == TemporaryClass::ANOMALY_ID_HOLODEC){
+  AID = 1;
+  } else if (AID == TemporaryClass::ANOMALY_ID_TRAMPLIN){
+  AID = 2;
+  } else {
+	  return;
+  }
+  if (scan_buf[AID] < 10000){
+	  scan_buf[AID]+=Anomaly.m_strength;
+  }
+  sprintf(Lcd.lcd_buf, "жарка:    %03d", (scan_buf[0])/100);
+  LcdString(1, LCD_LINE_2);
+  sprintf(Lcd.lcd_buf, "холодец:  %03d", (scan_buf[1])/100);
+  LcdString(1, LCD_LINE_3);
+  sprintf(Lcd.lcd_buf, "трамплин: %03d", scan_buf[2]/100);
+  LcdString(1, LCD_LINE_4);
+  //StalkerUI.DisplayEmptyString(StalkerUI_Class::UI_MENU_BODY_LINE_1);
+  //StalkerUI.DisplayMenuBody(this->position+1, StalkerUI_Class::UI_MENU_BODY_LINE_1, STR_STAR);
+  //#warning "[T] remove RAM str"
+  //sprintf(Lcd.lcd_buf, "%u-%u-%u-%u-%u-%u >", this->userPass[0], this->userPass[1], this->userPass[2], this->userPass[3], this->userPass[4], this->userPass[5]);
+  //StalkerUI.DisplayMenuBody(Lcd.lcd_buf, StalkerUI_Class::UI_MENU_BODY_LINE_0);
+  //STRClass Str;
+  //Str.SetPos(STRPOS_STR_STAR);
+  //Str.WriteTo(Lcd.lcd_buf);
+  //StalkerUI.DisplayMenuBody(&Str, StalkerUI_Class::UI_MENU_BODY_LINE_1, this->GetDotPosition()+1);
+  //StalkerUI.DisplayMenuBody(STRPOS_STR_STAR, StalkerUI_Class::UI_MENU_BODY_LINE_1, this->position+1);
+  
+  Lcd.IsNeedUpdate  = true;
+  }
+PDAMenu_MainInterface::MENUIDS PDAMenu_AnomalyScanClass::getID(void)
+  {
+  return PDAMenu_MainInterface::MENUID_ANOMALY_SCANNER;
+  }
+void PDAMenu_AnomalyScanClass::buttonPressed(ButtonsClass::BUTTONS btn)
+  {
+
+  }
+
