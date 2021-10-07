@@ -129,6 +129,7 @@ struct wrt_struct
   uint16_t size;
   char* filename;
   };
+const uint8_t FilesVersion[] PROGMEM ={0x01};
 wrt_struct data_to_read[]=
   {
   {SoundNone,           sizeof(SoundNone),            (char*)"none.wav"},           //1
@@ -160,6 +161,13 @@ wrt_struct data_to_read[]=
   {radio_waves_1,       sizeof(radio_waves_1),        (char*)"radio_waves_1.hex"},  //27
   {radio_waves_0,       sizeof(radio_waves_0),        (char*)"radio_waves_0.hex"},  //28
   {sound_pik,           sizeof(sound_pik),            (char*)"sound_pik.wav"},      //29
+  {FilesVersion,        sizeof(FilesVersion),         (char*)"FilesVersion.txt"},   //30
+  //{Sound_kovalskyBlowout_1,        sizeof(Sound_kovalskyBlowout_1),         (char*)"Sound_kovalskyBlowout_1.wav"},   //31
+  //{Sound_kovalskyBlowout_2,        sizeof(Sound_kovalskyBlowout_2),         (char*)"Sound_kovalskyBlowout_2.wav"},   //32		//31
+  //{Sound_kovalskyBlowout_3,        sizeof(Sound_kovalskyBlowout_3),         (char*)"Sound_kovalskyBlowout_3.wav"},   //33
+  //{Sound_kovalskyBlowout_4,        sizeof(Sound_kovalskyBlowout_4),         (char*)"Sound_kovalskyBlowout_4.wav"},   //34		//32
+  //{Sound_kovalskyBlowout_5,        sizeof(Sound_kovalskyBlowout_5),         (char*)"Sound_kovalskyBlowout_5.wav"},   //35
+	  
   };
 
 
