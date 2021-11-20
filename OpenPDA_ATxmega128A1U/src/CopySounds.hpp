@@ -129,45 +129,41 @@ struct wrt_struct
   uint16_t size;
   char* filename;
   };
-const uint8_t FilesVersion[] PROGMEM ={0x01};
+const uint8_t FilesVersion[] PROGMEM ={0x02};
 wrt_struct data_to_read[]=
   {
-  {SoundNone,           sizeof(SoundNone),            (char*)"none.wav"},           //1
-  {Sound_geiger_1,      sizeof(Sound_geiger_1),       (char*)"radiation.wav"},      //2
-  {Sound_geiger_4,      sizeof(Sound_geiger_4),       (char*)"radiation4.wav"},     //3
-  {Sound_pda_news,      sizeof(Sound_pda_news),       (char*)"pda_news.wav"},       //4
-  {Sound_da_2_beep1,    sizeof(Sound_da_2_beep1),     (char*)"anomaly_beep.wav"},   //5
-  {Sound_pain_1,        sizeof(Sound_pain_1),         (char*)"hit_1.wav"},          //6
-  {Sound_pain_7,        sizeof(Sound_pain_7),         (char*)"hit_2.wav"},          //7
-  {Sound_hit_5,         sizeof(Sound_hit_5),          (char*)"hit_3.wav"},          //8
-  {Sound_hit_6,         sizeof(Sound_hit_6),          (char*)"hit_4.wav"},          //9
-  {Sound_hurt3,         sizeof(Sound_hurt3),          (char*)"hit_5.wav"},          //10
-  {Sound_blowout_hit_2, sizeof(Sound_blowout_hit_2),  (char*)"blowout_hit.wav"},    //11
-  {img_4cols,           sizeof(img_4cols),            (char*)"img_4cols.hex"},      //12
-  {img_lowbat,          sizeof(img_lowbat),           (char*)"img_lowbat.hex"},     //13
-  {img_pboy,            sizeof(img_pboy),             (char*)"img_pboy.hex"},       //14
-  {img_skull,           sizeof(img_skull),            (char*)"img_skull.hex"},      //15
-  {img_zombie,          sizeof(img_zombie),           (char*)"img_zombie.hex"},     //16
-  {test1,               sizeof(test1),                (char*)"12345678901234"},     //17
-  {test2,               sizeof(test2),                (char*)"123456789012345"},    //18
-  {test3,               sizeof(test3),                (char*)"1234567890123456"},   //19
-  {test4,               sizeof(test4),                (char*)"12345678901234567"},  //20
-  {test5,               sizeof(test5),                (char*)"test5.hex"},          //21
-  {test6,               sizeof(test6),                (char*)"test6.hex"},          //22
-  {test1,               sizeof(test1),                (char*)"test1_1.hex"},        //23
+  {SoundNone,           sizeof(SoundNone),            (char*)"none.wav"},               //1
+  {Sound_geiger_1,      sizeof(Sound_geiger_1),       (char*)"radiation.wav"},          //2
+  {Sound_geiger_4,      sizeof(Sound_geiger_4),       (char*)"radiation4.wav"},         //3
+  {Sound_pda_news,      sizeof(Sound_pda_news),       (char*)"pda_news.wav"},           //4
+  {Sound_da_2_beep1,    sizeof(Sound_da_2_beep1),     (char*)"anomaly_beep.wav"},       //5
+  {Sound_pain_1,        sizeof(Sound_pain_1),         (char*)"hit_1.wav"},              //6
+  {Sound_pain_7,        sizeof(Sound_pain_7),         (char*)"hit_2.wav"},              //7
+  {Sound_hit_5,         sizeof(Sound_hit_5),          (char*)"hit_3.wav"},              //8
+  {Sound_hit_6,         sizeof(Sound_hit_6),          (char*)"hit_4.wav"},              //9
+  {Sound_hurt3,         sizeof(Sound_hurt3),          (char*)"hit_5.wav"},              //10
+  {Sound_blowout_hit_2, sizeof(Sound_blowout_hit_2),  (char*)"blowout_hit.wav"},        //11
+  {img_4cols,           sizeof(img_4cols),            (char*)"img_4cols.hex"},          //12
+  {img_lowbat,          sizeof(img_lowbat),           (char*)"img_lowbat.hex"},         //13
+  {img_pboy,            sizeof(img_pboy),             (char*)"img_pboy.hex"},           //14
+  {img_skull,           sizeof(img_skull),            (char*)"img_skull.hex"},          //15
+  {img_zombie,          sizeof(img_zombie),           (char*)"img_zombie.hex"},         //16
+  {test1,               sizeof(test1),                (char*)"12345678901234"},         //17
+  {test2,               sizeof(test2),                (char*)"123456789012345"},        //18
+  {test3,               sizeof(test3),                (char*)"1234567890123456"},       //19
+  {test4,               sizeof(test4),                (char*)"12345678901234567"},      //20
+  {test5,               sizeof(test5),                (char*)"test5.hex"},              //21
+  {test6,               sizeof(test6),                (char*)"test6.hex"},              //22
+  {test1,               sizeof(test1),                (char*)"test1_1.hex"},            //23
   {(const uint8_t*)pos_array,           STRClass::STORAGE_DATA_WIDTH*array_length(pos_array),         (char*)"lang.rus"},            //24
-  {radio_waves_3,       sizeof(radio_waves_3),        (char*)"radio_waves_3.hex"},  //25
-  {radio_waves_2,       sizeof(radio_waves_2),        (char*)"radio_waves_2.hex"},  //26
-  {radio_waves_1,       sizeof(radio_waves_1),        (char*)"radio_waves_1.hex"},  //27
-  {radio_waves_0,       sizeof(radio_waves_0),        (char*)"radio_waves_0.hex"},  //28
-  {sound_pik,           sizeof(sound_pik),            (char*)"sound_pik.wav"},      //29
-  {FilesVersion,        sizeof(FilesVersion),         (char*)"FilesVersion.txt"},   //30
-  //{Sound_kovalskyBlowout_1,        sizeof(Sound_kovalskyBlowout_1),         (char*)"Sound_kovalskyBlowout_1.wav"},   //31
-  //{Sound_kovalskyBlowout_2,        sizeof(Sound_kovalskyBlowout_2),         (char*)"Sound_kovalskyBlowout_2.wav"},   //32		//31
-  //{Sound_kovalskyBlowout_3,        sizeof(Sound_kovalskyBlowout_3),         (char*)"Sound_kovalskyBlowout_3.wav"},   //33
-  //{Sound_kovalskyBlowout_4,        sizeof(Sound_kovalskyBlowout_4),         (char*)"Sound_kovalskyBlowout_4.wav"},   //34		//32
-  //{Sound_kovalskyBlowout_5,        sizeof(Sound_kovalskyBlowout_5),         (char*)"Sound_kovalskyBlowout_5.wav"},   //35
-	  
+  {radio_waves_3,       sizeof(radio_waves_3),        (char*)"radio_waves_3.hex"},      //25
+  {radio_waves_2,       sizeof(radio_waves_2),        (char*)"radio_waves_2.hex"},      //26
+  {radio_waves_1,       sizeof(radio_waves_1),        (char*)"radio_waves_1.hex"},      //27
+  {radio_waves_0,       sizeof(radio_waves_0),        (char*)"radio_waves_0.hex"},      //28
+  {sound_pik,           sizeof(sound_pik),            (char*)"sound_pik.wav"},          //29
+  {FilesVersion,        sizeof(FilesVersion),         (char*)"FilesVersion.txt"},       //30
+  {img_skull_left_1,    sizeof(img_skull_left_1),     (char*)"img_skull_left_1.hex"},   //31
+  {img_skull_left_2,    sizeof(img_skull_left_2),     (char*)"img_skull_left_2.hex"},   //32
   };
 
 
