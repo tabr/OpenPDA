@@ -1,0 +1,481 @@
+//*****************************************************************************
+//
+// Author		: Trotzky Vasily
+// Date			: apr 2017
+// All rights reserved.
+
+// Redistribution and use in source and binary forms, with or without modification, 
+// are permitted provided that the following conditions are met:
+// Redistributions of source code must retain the above copyright notice, 
+// this list of conditions and the following disclaimer.
+
+// Redistributions in binary form must reproduce the above copyright notice, 
+// this list of conditions and the following disclaimer in the documentation and/or 
+// other materials provided with the distribution.
+
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+// IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+// BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY 
+// OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+// EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//*****************************************************************************
+#ifndef IOCONF_STM32F030F4_H_
+#define IOCONF_STM32F030F4_H_
+
+/*
+* Use YES or NO!
+* DO NOT DELETE! Just YES or NO! This is important!
+* If this MCU model has pin 0 on port A then you should
+* #define IOCONF_MCU_HAS_Pa0  YES
+* else
+* #define IOCONF_MCU_HAS_Pa0  NO
+*/
+
+//Port A
+#define IOCONF_MCU_HAS_Pa0   YES
+#define IOCONF_MCU_HAS_Pa1   YES
+#define IOCONF_MCU_HAS_Pa2   YES
+#define IOCONF_MCU_HAS_Pa3   YES
+#define IOCONF_MCU_HAS_Pa4   YES
+#define IOCONF_MCU_HAS_Pa5   YES
+#define IOCONF_MCU_HAS_Pa6   YES
+#define IOCONF_MCU_HAS_Pa7   YES
+#define IOCONF_MCU_HAS_Pa8   NO
+#define IOCONF_MCU_HAS_Pa9   YES
+#define IOCONF_MCU_HAS_Pa10  YES
+#define IOCONF_MCU_HAS_Pa11  NO
+#define IOCONF_MCU_HAS_Pa12  NO
+#define IOCONF_MCU_HAS_Pa13  YES
+#define IOCONF_MCU_HAS_Pa14  YES
+#define IOCONF_MCU_HAS_Pa15  NO
+#define IOCONF_MCU_HAS_Pa16  NO
+#define IOCONF_MCU_HAS_Pa17  NO
+#define IOCONF_MCU_HAS_Pa18  NO
+#define IOCONF_MCU_HAS_Pa19  NO
+#define IOCONF_MCU_HAS_Pa20  NO
+#define IOCONF_MCU_HAS_Pa21  NO
+#define IOCONF_MCU_HAS_Pa22  NO
+#define IOCONF_MCU_HAS_Pa23  NO
+#define IOCONF_MCU_HAS_Pa24  NO
+#define IOCONF_MCU_HAS_Pa25  NO
+#define IOCONF_MCU_HAS_Pa26  NO
+#define IOCONF_MCU_HAS_Pa27  NO
+#define IOCONF_MCU_HAS_Pa28  NO
+#define IOCONF_MCU_HAS_Pa29  NO
+#define IOCONF_MCU_HAS_Pa30  NO
+#define IOCONF_MCU_HAS_Pa31  NO
+
+//Port B
+#define IOCONF_MCU_HAS_Pb0   NO
+#define IOCONF_MCU_HAS_Pb1   YES
+#define IOCONF_MCU_HAS_Pb2   NO
+#define IOCONF_MCU_HAS_Pb3   NO
+#define IOCONF_MCU_HAS_Pb4   NO
+#define IOCONF_MCU_HAS_Pb5   NO
+#define IOCONF_MCU_HAS_Pb6   NO
+#define IOCONF_MCU_HAS_Pb7   NO
+#define IOCONF_MCU_HAS_Pb8   NO
+#define IOCONF_MCU_HAS_Pb9   NO
+#define IOCONF_MCU_HAS_Pb10  NO
+#define IOCONF_MCU_HAS_Pb11  NO
+#define IOCONF_MCU_HAS_Pb12  NO
+#define IOCONF_MCU_HAS_Pb13  NO
+#define IOCONF_MCU_HAS_Pb14  NO
+#define IOCONF_MCU_HAS_Pb15  NO
+#define IOCONF_MCU_HAS_Pb16  NO
+#define IOCONF_MCU_HAS_Pb17  NO
+#define IOCONF_MCU_HAS_Pb18  NO
+#define IOCONF_MCU_HAS_Pb19  NO
+#define IOCONF_MCU_HAS_Pb20  NO
+#define IOCONF_MCU_HAS_Pb21  NO
+#define IOCONF_MCU_HAS_Pb22  NO
+#define IOCONF_MCU_HAS_Pb23  NO
+#define IOCONF_MCU_HAS_Pb24  NO
+#define IOCONF_MCU_HAS_Pb25  NO
+#define IOCONF_MCU_HAS_Pb26  NO
+#define IOCONF_MCU_HAS_Pb27  NO
+#define IOCONF_MCU_HAS_Pb28  NO
+#define IOCONF_MCU_HAS_Pb29  NO
+#define IOCONF_MCU_HAS_Pb30  NO
+#define IOCONF_MCU_HAS_Pb31  NO
+
+//Port C
+#define IOCONF_MCU_HAS_Pc0   NO
+#define IOCONF_MCU_HAS_Pc1   NO
+#define IOCONF_MCU_HAS_Pc2   NO
+#define IOCONF_MCU_HAS_Pc3   NO
+#define IOCONF_MCU_HAS_Pc4   NO
+#define IOCONF_MCU_HAS_Pc5   NO
+#define IOCONF_MCU_HAS_Pc6   NO
+#define IOCONF_MCU_HAS_Pc7   NO
+#define IOCONF_MCU_HAS_Pc8   NO
+#define IOCONF_MCU_HAS_Pc9   NO
+#define IOCONF_MCU_HAS_Pc10  NO
+#define IOCONF_MCU_HAS_Pc11  NO
+#define IOCONF_MCU_HAS_Pc12  NO
+#define IOCONF_MCU_HAS_Pc13  NO
+#define IOCONF_MCU_HAS_Pc14  NO
+#define IOCONF_MCU_HAS_Pc15  NO
+#define IOCONF_MCU_HAS_Pc16  NO
+#define IOCONF_MCU_HAS_Pc17  NO
+#define IOCONF_MCU_HAS_Pc18  NO
+#define IOCONF_MCU_HAS_Pc19  NO
+#define IOCONF_MCU_HAS_Pc20  NO
+#define IOCONF_MCU_HAS_Pc21  NO
+#define IOCONF_MCU_HAS_Pc22  NO
+#define IOCONF_MCU_HAS_Pc23  NO
+#define IOCONF_MCU_HAS_Pc24  NO
+#define IOCONF_MCU_HAS_Pc25  NO
+#define IOCONF_MCU_HAS_Pc26  NO
+#define IOCONF_MCU_HAS_Pc27  NO
+#define IOCONF_MCU_HAS_Pc28  NO
+#define IOCONF_MCU_HAS_Pc29  NO
+#define IOCONF_MCU_HAS_Pc30  NO
+#define IOCONF_MCU_HAS_Pc31  NO
+
+//Port D
+#define IOCONF_MCU_HAS_Pd0   NO
+#define IOCONF_MCU_HAS_Pd1   NO
+#define IOCONF_MCU_HAS_Pd2   NO
+#define IOCONF_MCU_HAS_Pd3   NO
+#define IOCONF_MCU_HAS_Pd4   NO
+#define IOCONF_MCU_HAS_Pd5   NO
+#define IOCONF_MCU_HAS_Pd6   NO
+#define IOCONF_MCU_HAS_Pd7   NO
+#define IOCONF_MCU_HAS_Pd8   NO
+#define IOCONF_MCU_HAS_Pd9   NO
+#define IOCONF_MCU_HAS_Pd10  NO
+#define IOCONF_MCU_HAS_Pd11  NO
+#define IOCONF_MCU_HAS_Pd12  NO
+#define IOCONF_MCU_HAS_Pd13  NO
+#define IOCONF_MCU_HAS_Pd14  NO
+#define IOCONF_MCU_HAS_Pd15  NO
+#define IOCONF_MCU_HAS_Pd16  NO
+#define IOCONF_MCU_HAS_Pd17  NO
+#define IOCONF_MCU_HAS_Pd18  NO
+#define IOCONF_MCU_HAS_Pd19  NO
+#define IOCONF_MCU_HAS_Pd20  NO
+#define IOCONF_MCU_HAS_Pd21  NO
+#define IOCONF_MCU_HAS_Pd22  NO
+#define IOCONF_MCU_HAS_Pd23  NO
+#define IOCONF_MCU_HAS_Pd24  NO
+#define IOCONF_MCU_HAS_Pd25  NO
+#define IOCONF_MCU_HAS_Pd26  NO
+#define IOCONF_MCU_HAS_Pd27  NO
+#define IOCONF_MCU_HAS_Pd28  NO
+#define IOCONF_MCU_HAS_Pd29  NO
+#define IOCONF_MCU_HAS_Pd30  NO
+#define IOCONF_MCU_HAS_Pd31  NO
+
+//Port E
+#define IOCONF_MCU_HAS_Pe0   NO
+#define IOCONF_MCU_HAS_Pe1   NO
+#define IOCONF_MCU_HAS_Pe2   NO
+#define IOCONF_MCU_HAS_Pe3   NO
+#define IOCONF_MCU_HAS_Pe4   NO
+#define IOCONF_MCU_HAS_Pe5   NO
+#define IOCONF_MCU_HAS_Pe6   NO
+#define IOCONF_MCU_HAS_Pe7   NO
+#define IOCONF_MCU_HAS_Pe8   NO
+#define IOCONF_MCU_HAS_Pe9   NO
+#define IOCONF_MCU_HAS_Pe10  NO
+#define IOCONF_MCU_HAS_Pe11  NO
+#define IOCONF_MCU_HAS_Pe12  NO
+#define IOCONF_MCU_HAS_Pe13  NO
+#define IOCONF_MCU_HAS_Pe14  NO
+#define IOCONF_MCU_HAS_Pe15  NO
+#define IOCONF_MCU_HAS_Pe16  NO
+#define IOCONF_MCU_HAS_Pe17  NO
+#define IOCONF_MCU_HAS_Pe18  NO
+#define IOCONF_MCU_HAS_Pe19  NO
+#define IOCONF_MCU_HAS_Pe20  NO
+#define IOCONF_MCU_HAS_Pe21  NO
+#define IOCONF_MCU_HAS_Pe22  NO
+#define IOCONF_MCU_HAS_Pe23  NO
+#define IOCONF_MCU_HAS_Pe24  NO
+#define IOCONF_MCU_HAS_Pe25  NO
+#define IOCONF_MCU_HAS_Pe26  NO
+#define IOCONF_MCU_HAS_Pe27  NO
+#define IOCONF_MCU_HAS_Pe28  NO
+#define IOCONF_MCU_HAS_Pe29  NO
+#define IOCONF_MCU_HAS_Pe30  NO
+#define IOCONF_MCU_HAS_Pe31  NO
+
+//Port F                     NO
+#define IOCONF_MCU_HAS_Pf0   YES
+#define IOCONF_MCU_HAS_Pf1   YES
+#define IOCONF_MCU_HAS_Pf2   NO
+#define IOCONF_MCU_HAS_Pf3   NO
+#define IOCONF_MCU_HAS_Pf4   NO
+#define IOCONF_MCU_HAS_Pf5   NO
+#define IOCONF_MCU_HAS_Pf6   NO
+#define IOCONF_MCU_HAS_Pf7   NO
+#define IOCONF_MCU_HAS_Pf8   NO
+#define IOCONF_MCU_HAS_Pf9   NO
+#define IOCONF_MCU_HAS_Pf10  NO
+#define IOCONF_MCU_HAS_Pf11  NO
+#define IOCONF_MCU_HAS_Pf12  NO
+#define IOCONF_MCU_HAS_Pf13  NO
+#define IOCONF_MCU_HAS_Pf14  NO
+#define IOCONF_MCU_HAS_Pf15  NO
+#define IOCONF_MCU_HAS_Pf16  NO
+#define IOCONF_MCU_HAS_Pf17  NO
+#define IOCONF_MCU_HAS_Pf18  NO
+#define IOCONF_MCU_HAS_Pf19  NO
+#define IOCONF_MCU_HAS_Pf20  NO
+#define IOCONF_MCU_HAS_Pf21  NO
+#define IOCONF_MCU_HAS_Pf22  NO
+#define IOCONF_MCU_HAS_Pf23  NO
+#define IOCONF_MCU_HAS_Pf24  NO
+#define IOCONF_MCU_HAS_Pf25  NO
+#define IOCONF_MCU_HAS_Pf26  NO
+#define IOCONF_MCU_HAS_Pf27  NO
+#define IOCONF_MCU_HAS_Pf28  NO
+#define IOCONF_MCU_HAS_Pf29  NO
+#define IOCONF_MCU_HAS_Pf30  NO
+#define IOCONF_MCU_HAS_Pf31  NO
+
+//Port G                     NO
+#define IOCONF_MCU_HAS_Pg0   NO
+#define IOCONF_MCU_HAS_Pg1   NO
+#define IOCONF_MCU_HAS_Pg2   NO
+#define IOCONF_MCU_HAS_Pg3   NO
+#define IOCONF_MCU_HAS_Pg4   NO
+#define IOCONF_MCU_HAS_Pg5   NO
+#define IOCONF_MCU_HAS_Pg6   NO
+#define IOCONF_MCU_HAS_Pg7   NO
+#define IOCONF_MCU_HAS_Pg8   NO
+#define IOCONF_MCU_HAS_Pg9   NO
+#define IOCONF_MCU_HAS_Pg10  NO
+#define IOCONF_MCU_HAS_Pg11  NO
+#define IOCONF_MCU_HAS_Pg12  NO
+#define IOCONF_MCU_HAS_Pg13  NO
+#define IOCONF_MCU_HAS_Pg14  NO
+#define IOCONF_MCU_HAS_Pg15  NO
+#define IOCONF_MCU_HAS_Pg16  NO
+#define IOCONF_MCU_HAS_Pg17  NO
+#define IOCONF_MCU_HAS_Pg18  NO
+#define IOCONF_MCU_HAS_Pg19  NO
+#define IOCONF_MCU_HAS_Pg20  NO
+#define IOCONF_MCU_HAS_Pg21  NO
+#define IOCONF_MCU_HAS_Pg22  NO
+#define IOCONF_MCU_HAS_Pg23  NO
+#define IOCONF_MCU_HAS_Pg24  NO
+#define IOCONF_MCU_HAS_Pg25  NO
+#define IOCONF_MCU_HAS_Pg26  NO
+#define IOCONF_MCU_HAS_Pg27  NO
+#define IOCONF_MCU_HAS_Pg28  NO
+#define IOCONF_MCU_HAS_Pg29  NO
+#define IOCONF_MCU_HAS_Pg30  NO
+#define IOCONF_MCU_HAS_Pg31  NO
+
+//Port H                     NO
+#define IOCONF_MCU_HAS_Ph0   NO
+#define IOCONF_MCU_HAS_Ph1   NO
+#define IOCONF_MCU_HAS_Ph2   NO
+#define IOCONF_MCU_HAS_Ph3   NO
+#define IOCONF_MCU_HAS_Ph4   NO
+#define IOCONF_MCU_HAS_Ph5   NO
+#define IOCONF_MCU_HAS_Ph6   NO
+#define IOCONF_MCU_HAS_Ph7   NO
+#define IOCONF_MCU_HAS_Ph8   NO
+#define IOCONF_MCU_HAS_Ph9   NO
+#define IOCONF_MCU_HAS_Ph10  NO
+#define IOCONF_MCU_HAS_Ph11  NO
+#define IOCONF_MCU_HAS_Ph12  NO
+#define IOCONF_MCU_HAS_Ph13  NO
+#define IOCONF_MCU_HAS_Ph14  NO
+#define IOCONF_MCU_HAS_Ph15  NO
+#define IOCONF_MCU_HAS_Ph16  NO
+#define IOCONF_MCU_HAS_Ph17  NO
+#define IOCONF_MCU_HAS_Ph18  NO
+#define IOCONF_MCU_HAS_Ph19  NO
+#define IOCONF_MCU_HAS_Ph20  NO
+#define IOCONF_MCU_HAS_Ph21  NO
+#define IOCONF_MCU_HAS_Ph22  NO
+#define IOCONF_MCU_HAS_Ph23  NO
+#define IOCONF_MCU_HAS_Ph24  NO
+#define IOCONF_MCU_HAS_Ph25  NO
+#define IOCONF_MCU_HAS_Ph26  NO
+#define IOCONF_MCU_HAS_Ph27  NO
+#define IOCONF_MCU_HAS_Ph28  NO
+#define IOCONF_MCU_HAS_Ph29  NO
+#define IOCONF_MCU_HAS_Ph30  NO
+#define IOCONF_MCU_HAS_Ph31  NO
+
+//Port I                     NO
+#define IOCONF_MCU_HAS_Pi0   NO
+#define IOCONF_MCU_HAS_Pi1   NO
+#define IOCONF_MCU_HAS_Pi2   NO
+#define IOCONF_MCU_HAS_Pi3   NO
+#define IOCONF_MCU_HAS_Pi4   NO
+#define IOCONF_MCU_HAS_Pi5   NO
+#define IOCONF_MCU_HAS_Pi6   NO
+#define IOCONF_MCU_HAS_Pi7   NO
+#define IOCONF_MCU_HAS_Pi8   NO
+#define IOCONF_MCU_HAS_Pi9   NO
+#define IOCONF_MCU_HAS_Pi10  NO
+#define IOCONF_MCU_HAS_Pi11  NO
+#define IOCONF_MCU_HAS_Pi12  NO
+#define IOCONF_MCU_HAS_Pi13  NO
+#define IOCONF_MCU_HAS_Pi14  NO
+#define IOCONF_MCU_HAS_Pi15  NO
+#define IOCONF_MCU_HAS_Pi16  NO
+#define IOCONF_MCU_HAS_Pi17  NO
+#define IOCONF_MCU_HAS_Pi18  NO
+#define IOCONF_MCU_HAS_Pi19  NO
+#define IOCONF_MCU_HAS_Pi20  NO
+#define IOCONF_MCU_HAS_Pi21  NO
+#define IOCONF_MCU_HAS_Pi22  NO
+#define IOCONF_MCU_HAS_Pi23  NO
+#define IOCONF_MCU_HAS_Pi24  NO
+#define IOCONF_MCU_HAS_Pi25  NO
+#define IOCONF_MCU_HAS_Pi26  NO
+#define IOCONF_MCU_HAS_Pi27  NO
+#define IOCONF_MCU_HAS_Pi28  NO
+#define IOCONF_MCU_HAS_Pi29  NO
+#define IOCONF_MCU_HAS_Pi30  NO
+#define IOCONF_MCU_HAS_Pi31  NO
+
+//Port J                     NO
+#define IOCONF_MCU_HAS_Pj0   NO
+#define IOCONF_MCU_HAS_Pj1   NO
+#define IOCONF_MCU_HAS_Pj2   NO
+#define IOCONF_MCU_HAS_Pj3   NO
+#define IOCONF_MCU_HAS_Pj4   NO
+#define IOCONF_MCU_HAS_Pj5   NO
+#define IOCONF_MCU_HAS_Pj6   NO
+#define IOCONF_MCU_HAS_Pj7   NO
+#define IOCONF_MCU_HAS_Pj8   NO
+#define IOCONF_MCU_HAS_Pj9   NO
+#define IOCONF_MCU_HAS_Pj10  NO
+#define IOCONF_MCU_HAS_Pj11  NO
+#define IOCONF_MCU_HAS_Pj12  NO
+#define IOCONF_MCU_HAS_Pj13  NO
+#define IOCONF_MCU_HAS_Pj14  NO
+#define IOCONF_MCU_HAS_Pj15  NO
+#define IOCONF_MCU_HAS_Pj16  NO
+#define IOCONF_MCU_HAS_Pj17  NO
+#define IOCONF_MCU_HAS_Pj18  NO
+#define IOCONF_MCU_HAS_Pj19  NO
+#define IOCONF_MCU_HAS_Pj20  NO
+#define IOCONF_MCU_HAS_Pj21  NO
+#define IOCONF_MCU_HAS_Pj22  NO
+#define IOCONF_MCU_HAS_Pj23  NO
+#define IOCONF_MCU_HAS_Pj24  NO
+#define IOCONF_MCU_HAS_Pj25  NO
+#define IOCONF_MCU_HAS_Pj26  NO
+#define IOCONF_MCU_HAS_Pj27  NO
+#define IOCONF_MCU_HAS_Pj28  NO
+#define IOCONF_MCU_HAS_Pj29  NO
+#define IOCONF_MCU_HAS_Pj30  NO
+#define IOCONF_MCU_HAS_Pj31  NO
+
+//Port K                     NO
+#define IOCONF_MCU_HAS_Pk0   NO
+#define IOCONF_MCU_HAS_Pk1   NO
+#define IOCONF_MCU_HAS_Pk2   NO
+#define IOCONF_MCU_HAS_Pk3   NO
+#define IOCONF_MCU_HAS_Pk4   NO
+#define IOCONF_MCU_HAS_Pk5   NO
+#define IOCONF_MCU_HAS_Pk6   NO
+#define IOCONF_MCU_HAS_Pk7   NO
+#define IOCONF_MCU_HAS_Pk8   NO
+#define IOCONF_MCU_HAS_Pk9   NO
+#define IOCONF_MCU_HAS_Pk10  NO
+#define IOCONF_MCU_HAS_Pk11  NO
+#define IOCONF_MCU_HAS_Pk12  NO
+#define IOCONF_MCU_HAS_Pk13  NO
+#define IOCONF_MCU_HAS_Pk14  NO
+#define IOCONF_MCU_HAS_Pk15  NO
+#define IOCONF_MCU_HAS_Pk16  NO
+#define IOCONF_MCU_HAS_Pk17  NO
+#define IOCONF_MCU_HAS_Pk18  NO
+#define IOCONF_MCU_HAS_Pk19  NO
+#define IOCONF_MCU_HAS_Pk20  NO
+#define IOCONF_MCU_HAS_Pk21  NO
+#define IOCONF_MCU_HAS_Pk22  NO
+#define IOCONF_MCU_HAS_Pk23  NO
+#define IOCONF_MCU_HAS_Pk24  NO
+#define IOCONF_MCU_HAS_Pk25  NO
+#define IOCONF_MCU_HAS_Pk26  NO
+#define IOCONF_MCU_HAS_Pk27  NO
+#define IOCONF_MCU_HAS_Pk28  NO
+#define IOCONF_MCU_HAS_Pk29  NO
+#define IOCONF_MCU_HAS_Pk30  NO
+#define IOCONF_MCU_HAS_Pk31  NO
+
+//Port Q                     NO
+#define IOCONF_MCU_HAS_Pq0   NO
+#define IOCONF_MCU_HAS_Pq1   NO
+#define IOCONF_MCU_HAS_Pq2   NO
+#define IOCONF_MCU_HAS_Pq3   NO
+#define IOCONF_MCU_HAS_Pq4   NO
+#define IOCONF_MCU_HAS_Pq5   NO
+#define IOCONF_MCU_HAS_Pq6   NO
+#define IOCONF_MCU_HAS_Pq7   NO
+#define IOCONF_MCU_HAS_Pq8   NO
+#define IOCONF_MCU_HAS_Pq9   NO
+#define IOCONF_MCU_HAS_Pq10  NO
+#define IOCONF_MCU_HAS_Pq11  NO
+#define IOCONF_MCU_HAS_Pq12  NO
+#define IOCONF_MCU_HAS_Pq13  NO
+#define IOCONF_MCU_HAS_Pq14  NO
+#define IOCONF_MCU_HAS_Pq15  NO
+#define IOCONF_MCU_HAS_Pq16  NO
+#define IOCONF_MCU_HAS_Pq17  NO
+#define IOCONF_MCU_HAS_Pq18  NO
+#define IOCONF_MCU_HAS_Pq19  NO
+#define IOCONF_MCU_HAS_Pq20  NO
+#define IOCONF_MCU_HAS_Pq21  NO
+#define IOCONF_MCU_HAS_Pq22  NO
+#define IOCONF_MCU_HAS_Pq23  NO
+#define IOCONF_MCU_HAS_Pq24  NO
+#define IOCONF_MCU_HAS_Pq25  NO
+#define IOCONF_MCU_HAS_Pq26  NO
+#define IOCONF_MCU_HAS_Pq27  NO
+#define IOCONF_MCU_HAS_Pq28  NO
+#define IOCONF_MCU_HAS_Pq29  NO
+#define IOCONF_MCU_HAS_Pq30  NO
+#define IOCONF_MCU_HAS_Pq31  NO
+
+//Port R                     NO
+#define IOCONF_MCU_HAS_Pr0   NO
+#define IOCONF_MCU_HAS_Pr1   NO
+#define IOCONF_MCU_HAS_Pr2   NO
+#define IOCONF_MCU_HAS_Pr3   NO
+#define IOCONF_MCU_HAS_Pr4   NO
+#define IOCONF_MCU_HAS_Pr5   NO
+#define IOCONF_MCU_HAS_Pr6   NO
+#define IOCONF_MCU_HAS_Pr7   NO
+#define IOCONF_MCU_HAS_Pr8   NO
+#define IOCONF_MCU_HAS_Pr9   NO
+#define IOCONF_MCU_HAS_Pr10  NO
+#define IOCONF_MCU_HAS_Pr11  NO
+#define IOCONF_MCU_HAS_Pr12  NO
+#define IOCONF_MCU_HAS_Pr13  NO
+#define IOCONF_MCU_HAS_Pr14  NO
+#define IOCONF_MCU_HAS_Pr15  NO
+#define IOCONF_MCU_HAS_Pr16  NO
+#define IOCONF_MCU_HAS_Pr17  NO
+#define IOCONF_MCU_HAS_Pr18  NO
+#define IOCONF_MCU_HAS_Pr19  NO
+#define IOCONF_MCU_HAS_Pr20  NO
+#define IOCONF_MCU_HAS_Pr21  NO
+#define IOCONF_MCU_HAS_Pr22  NO
+#define IOCONF_MCU_HAS_Pr23  NO
+#define IOCONF_MCU_HAS_Pr24  NO
+#define IOCONF_MCU_HAS_Pr25  NO
+#define IOCONF_MCU_HAS_Pr26  NO
+#define IOCONF_MCU_HAS_Pr27  NO
+#define IOCONF_MCU_HAS_Pr28  NO
+#define IOCONF_MCU_HAS_Pr29  NO
+#define IOCONF_MCU_HAS_Pr30  NO
+#define IOCONF_MCU_HAS_Pr31  NO
+
+#endif //IOCONF_STM8S003F3P6_H_
