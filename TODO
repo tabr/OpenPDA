@@ -5,3 +5,5 @@
 * Lcd should be more abstract. Should be run on ANY display.
 * Make a wiki
 * Make a USB interface to rewrite flash (sounds, images).
+* sound works not well
+* rework damage/defence system
