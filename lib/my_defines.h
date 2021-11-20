@@ -24,4 +24,10 @@ char (&ArraySizeHelper(T (&array)[N]))[N];
 #define MHZ_1                       1000000
 #define ONE_MHZ                      MHZ_1
 
+template<class T>
+const T& max(const T& a, const T& b)
+{
+	return (a < b) ? b : a;
+}
+
 #endif
