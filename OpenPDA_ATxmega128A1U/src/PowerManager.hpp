@@ -24,7 +24,7 @@
 //#include  "pdamenu.h"
 //#include  "VibroClass.h"
 #include  <n3310LcdClass.hpp>
-#include  <images.h>
+//#include  <images.h>
 #include  <typedefs.h>
 /*
 extern  uint8_t  ReadSignatureByte(uint16_t  Address);

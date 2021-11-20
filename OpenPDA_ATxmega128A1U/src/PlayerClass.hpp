@@ -17,7 +17,7 @@
 #include  "stalker/Environment.hpp"
 #include  "n3310_new.h"
 #include  <stalker/LcdClass.hpp>
-#include  "images.h"
+//#include  "images.h"
 #include  "TODOmacro.h"
 #include  "VibroClass.hpp"
 #include  "stalker.hpp"

@@ -115,7 +115,7 @@ static Singleton& instance()
 //#define ASWAYS_SLEEP //does not works
 //#define FAKE_ADC_POWER
 //#define SLOWLY_KILL
-#define IDDQD  //not fully tested
+//#define IDDQD  //not fully tested
 #ifndef DEBUG_BUILD
 	#define CRC_TABLE_RAM //512 bytes
 #endif
@@ -149,7 +149,7 @@ static Singleton& instance()
 
 #ifdef MASTER_PDA
 #define TIMESYNC_BYPASS
-//#define IDDQD  //not fully tested
+#define IDDQD  //not fully tested
 
 #endif //MASTER_PDA
 
@@ -219,7 +219,9 @@ static Singleton& instance()
 #include "unionsFixed.h"
 //#include "ring_buffer.h"
 #include "stalker/drivers/Driver_Clock_xmega128a1u.hpp"
-#include "images.h"
+#ifdef LOAD_SOUNDS
+	#include "img/imageList.h"
+#endif
 #include <stalker/drivers/StalkerUI_Class_n3310.hpp>
 #include "src/Sounds.hpp"
 #include "n3310_new.h"
@@ -683,8 +685,10 @@ int main(void)
     //while ((ADCA.CTRLA & ADC_CH0START_bm) == 1);//wait for conversion ends
 //      while ((ADCA.INTFLAGS & ADC_CH0IF_bm) == 0);//wait for conversion ends
 //        sprintf (Lcd.lcd_buf,"%d",1);
-//    sprintf (Lcd.lcd_buf,"%03u", hui);
-//    LcdString(12,LCD_LINE_1);
+    //sprintf (Lcd.lcd_buf,"%03u", Env.GetRadiationNeutronFluxLevel());
+    //LcdString(12,LCD_LINE_1);
+    //sprintf (Lcd.lcd_buf,"%03u", Env.GetComplexRadiationLevelPercent());
+    //LcdString(12,LCD_LINE_2);
     n3310LcdClass::RequestUpdate();
     #ifdef DEBUG_BUILD
       {
