@@ -33,7 +33,8 @@ void GenericSkinClass::DisplayEmissionLevel(DamageSource_t dmgSrc, Percent_t lev
   	break;
     case DamageSource_t::DAMAGE_SOURCE_RADIATION_EXTERNAL:
       {
-      this->DisplayPercentBar(this->RAD_GRID_POS_X1, Env.GetRadiationLevelPercent());
+      //this->DisplayPercentBar(this->RAD_GRID_POS_X1, Env.GetRadiationLevelPercent());
+      this->DisplayPercentBar(this->RAD_GRID_POS_X1, Env.GetComplexRadiationLevelPercent());
       }
   	break;
     case DamageSource_t::DAMAGE_SOURCE_PSY:
@@ -142,7 +143,8 @@ void GenericSkinClass::UpdateMainMenuScreen(void)
       Lcd.IsEnvRadLevelNeedRedraw    = false;
       Lcd.IsNeedUpdate        = true;
       //PDAMenu.displayPercentBar(PDAMenuClass::RAD_GRID_POS_X1, Env.GetRadiationLevel()*100/Environment::MAX_RAD_LEVEL);
-      this->DisplayEmissionLevel(DamageSource_t::DAMAGE_SOURCE_RADIATION_EXTERNAL, (Env.GetRadiationLevel()*100/Environment::MAX_RAD_LEVEL));
+      //this->DisplayEmissionLevel(DamageSource_t::DAMAGE_SOURCE_RADIATION_EXTERNAL, (Env.GetRadiationLevel()*100/Environment::MAX_RAD_LEVEL));
+      this->DisplayEmissionLevel(DamageSource_t::DAMAGE_SOURCE_RADIATION_EXTERNAL, (Env.GetComplexRadiationLevelPercent()));
       }
     if (Lcd.IsEnvPsyLevelNeedRedraw || Lcd.IsMainScreenNeedRedraw)
       {

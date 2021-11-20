@@ -188,6 +188,7 @@ void Class_StalkerLayer2::EnvironmentProcess(void)
 	uint8_t rariomarkID             = 0;
 	uint8_t SignalPower             = 0;
 	bool isRadiationPacketReceived  = false;
+	bool isRadiation1PacketReceived  = false;
 	bool isAnomalyPacketReceived    = false;
 	bool isPsyPacketReceived        = false;
   LogClass::Log(LogClass::MESSAGES::MESSAGE_SL2_ENVIRONMENT_PROCESS__ENTER,this->bufPointer);
@@ -255,6 +256,15 @@ void Class_StalkerLayer2::EnvironmentProcess(void)
 
 		switch (selectedRadiomark->GetType())
 			{
+			case RadiomarkInstanceClass::RADIOMARK_TYPE_RADIATION_NEUTRON_FLUX:
+			{
+			RadiomarkRadiationNeutronFluxClass RadiationNeutronFlux = RadiomarkRadiationNeutronFluxClass(selectedRadiomark);
+			RadiationNeutronFlux.ProcessSignal(SignalPower);
+			isRadiation1PacketReceived	= true;
+				//RadiomarkRadiationAnomayClass RadAno	= RadiomarkRadiationAnomayClass(selectedRadiomark);
+				//RadAno.ProcessSignal(SignalPower);
+			break;
+			}
 			case RadiomarkInstanceClass::RADIOMARK_TYPE_RADIATION_ANOMALY:
 				{
         LogClass::Log(LogClass::MESSAGES::MESSAGE_SL2_ENVIRONMENT_PROCESS__RADIOMARK_TYPE_RADIATION_ANOMALY);
@@ -372,10 +382,12 @@ void Class_StalkerLayer2::EnvironmentProcess(void)
 		//this->bufPointer--;
 		}
   TODO("REMOVE THIS BOOL VARS!")
-	if (isRadiationPacketReceived == false)
-		{
+	if (isRadiationPacketReceived == false){
 		Env.RadLevelSetFilter(0);
 		}
+	if (isRadiation1PacketReceived == false){
+		Env.RadiationNeutronFluxLevelSetFilter(0);
+	}
 	if (isAnomalyPacketReceived == false)
 		{
 		Anomaly.setLevelType_FilterNone();

@@ -61,6 +61,31 @@ Percent_t RadiomarkInstanceClass::GetSignalPowerPercent(void)
   return percent;
   }
 
+void RadiomarkRadiationNeutronFluxClass::ProcessSignal(uint8_t signalPower){
+	int8_t RadiationMultiplier	= this->GetRadiationMultiplier();
+  if (RadiationMultiplier != 0)
+  {
+	  //LogClass::Log(LogClass::MESSAGES::MESSAGE_RADIOMARK_RADANO__PROCESS_SIGNAL__RAD_MUL, RadiationMultiplier);
+
+	  uint16_t itmp	= 0;
+	  if (RadiationMultiplier > 0)
+	  {
+		  itmp	= ((uint8_t)RadiationMultiplier) * signalPower;//multiplier * [rssi/2]
+	  }
+	  else
+	  {
+		  itmp	= signalPower/(-RadiationMultiplier);
+	  }
+	  if (itmp> 255)
+	  {
+		  itmp=255;
+	  }
+	  //LogClass::Log(LogClass::MESSAGES::MESSAGE_RADIOMARK_RADANO__PROCESS_SIGNAL__ITMP, itmp);
+	  Env.RadiationNeutronFluxLevelSetFilter((uint8_t)itmp);
+  }
+}
+
+
  void RadiomarkRadiationAnomayClass::ProcessSignal(uint8_t signalPower)
   {
   int8_t RadiationMultiplier	= this->GetRadiationMultiplier();

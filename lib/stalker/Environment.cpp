@@ -32,13 +32,15 @@ Environment::Environment()
 	this->cleanRadFilter();
 	
 	}
+//50ms
 void Environment::process(void)//генерация звука радиации и преобразование излучения в дозу
 	{
 	if (Player.IsDead())//мёртвые не подвержены радиации
 		{
 		return;
 		}
-	this->radLevelSoundCounter+=this->radiationLevel;
+	//this->radLevelSoundCounter+=this->radiationLevel;
+	this->radLevelSoundCounter+=this->GetRadiationLevel() + this->GetRadiationNeutronFluxLevel();
 //	this->anoLevelSoundCounter+=Anomaly.strength;
 	if (this->radLevelSoundCounter > this->RADIATION_SOUND_THRESHOLD)
 		{
@@ -53,8 +55,21 @@ void Environment::process(void)//генерация звука радиации 
 			}
 		this->RadiationToDoseProcess();
 		}
+	if (this->GetRadiationNeutronFluxLevel() > 0){
+		this->radNeutronLevelDmgCounter += this->GetRadiationNeutronFluxLevel();
+		//this->radNeutronLevelDmgCounterCnt++;
+		if (this->radNeutronLevelDmgCounter >= this->RAD_NEUTRON_FLUX_DMG_THRESHOLD){
+			DamageClass dmg;
+			//uint8_t dmg_value = (this->radNeutronLevelDmgCounter/this->radNeutronLevelDmgCounterCnt);
+			//dmg.SetNewDamage(DamageClass::AGGRESSOR_SOURCE_EXTERNAL, DamageSource_t::DAMAGE_SOURCE_RADIATION_EXTERNAL, max(1, dmg_value));
+			dmg.SetNewDamage(DamageClass::AGGRESSOR_SOURCE_EXTERNAL, DamageSource_t::DAMAGE_SOURCE_RADIATION_EXTERNAL, TemporaryClass::DAMAGE_VALUE_NEUTRON_FLUX);
+			Player.DealDamage(dmg);
+			radNeutronLevelDmgCounter-=this->RAD_NEUTRON_FLUX_DMG_THRESHOLD;
+			//this->radNeutronLevelDmgCounterCnt=0;
+		}
 	}
-
+	}
+/*
 void Environment::RadLevelSet1(RadLevel_t value)
 	{
 	if (value > this->MAX_RAD_LEVEL)
@@ -66,6 +81,25 @@ void Environment::RadLevelSet1(RadLevel_t value)
 //	if (PDAMenu.selectedMenuID == PDAMenuClass::MENUID_MAIN) //TODO: ДУБЛИРУЕТСЯ!!!
 //		PDAMenu.displayPercentBar(RAD_GRID_POS_X1, Env.radiationLevel*100/Environment::MAX_RAD_LEVEL);
 
+	}
+*/
+void Environment::RadiationNeutronFluxLevelSetFilter(RadLevel_t value)
+	{
+	if (value > this->MAX_RAD_LEVEL)
+		{
+		value	= this->MAX_RAD_LEVEL;
+		}
+
+	uint16_t sum=0;
+	for (uint8_t i=0;i<this->RAD_FILTER_CACHE_LENGTH-1;i++)
+		{
+		sum					+= this->RadiationNeutronFluxFilter[i];
+		this->RadiationNeutronFluxFilter[i]	= this->RadiationNeutronFluxFilter[i+1];
+		}
+	this->RadiationNeutronFluxFilter[this->RAD_FILTER_CACHE_LENGTH-1]	= value;
+	this->RadiationNeutronFluxLevel			= (sum + value)/RAD_FILTER_CACHE_LENGTH;
+
+	Lcd.IsEnvRadLevelNeedRedraw	= true;
 	}
 void Environment::RadLevelSetFilter(RadLevel_t value)
 	{
@@ -111,7 +145,7 @@ void Environment::RadiationToDoseProcess(void)
 		}
 //    if (Player.defenceRad > 0 && Player.defenceRad > this->radiationLevel) // более оптимально за счет проверки на нуль, тоесть если большинство без защиты
 //    if (Player.getDefenceRadiation() >= this->radiationLevel)
-    if (Player.GetComplexDefenceFrom({value:1, damageSource:TemporaryClass::DAMAGE_SOURCE_RADIATION_EXTERNAL}) >= this->radiationLevel)
+    if (Player.GetComplexDefenceFrom({value:1, damageSource:TemporaryClass::DAMAGE_SOURCE_RADIATION_EXTERNAL}) >= this->GetRadiationLevel())
 		{
 		return;//и нахера было всё, что ниже??!
 //        resist	= this->radiationLevel;
@@ -120,7 +154,7 @@ void Environment::RadiationToDoseProcess(void)
 		}
 //    this->playerRadDoseCollector+=radiationLevel-resist;
 //    this->playerRadDoseCollector+=radiationLevel - Player.getDefenceRadiation();
-    this->playerRadDoseCollector+=this->radiationLevel - Player.GetComplexDefenceFrom({value:1, damageSource:TemporaryClass::DAMAGE_SOURCE_RADIATION_EXTERNAL});
+    this->playerRadDoseCollector+=this->GetRadiationLevel() - Player.GetComplexDefenceFrom({value:1, damageSource:TemporaryClass::DAMAGE_SOURCE_RADIATION_EXTERNAL});
     if (this->playerRadDoseCollector > this->RAD_DOSE_THRESHOLD)
         {
         this->playerRadDoseCollector-=this->RAD_DOSE_THRESHOLD;
@@ -161,6 +195,8 @@ void Environment::cleanRadFilter(void)
 	//CleanArray(this->radFilter,this->RAD_FILTER_CACHE_LENGTH);
 	memset(this->radFilter, 0, this->RAD_FILTER_CACHE_LENGTH);
 	this->radiationLevel		= 0;
+	memset(this->RadiationNeutronFluxFilter, 0, this->RAD_FILTER_CACHE_LENGTH);
+	this->RadiationNeutronFluxLevel = 0;
 	}
 void Environment::cleanPsyFilter(void)
 	{
@@ -169,14 +205,21 @@ void Environment::cleanPsyFilter(void)
 	//std::fill(this->psyFilter, 0, this->PSY_FILTER_CACHE_LENGTH);
 	this->psyLevel				= 0;
 	}
-RadLevel_t Environment::GetRadiationLevel(void)
-	{
+RadLevel_t Environment::GetRadiationNeutronFluxLevel(void){
+	return this->RadiationNeutronFluxLevel;
+}
+RadLevel_t Environment::GetRadiationLevel(void){
 	return this->radiationLevel;
 	}
-Percent_t Environment::GetRadiationLevelPercent(void)
+Percent_t Environment::GetRadiationLevelPercent1(void)
   {
   return (this->GetRadiationLevel()*100/this->MAX_RAD_LEVEL);
   }
+Percent_t Environment::GetComplexRadiationLevelPercent(void){
+	uint8_t level = max(this->GetRadiationLevel(), this->GetRadiationNeutronFluxLevel());
+	//uint8_t level = 0;//std::max(1,2);
+	return (level*100/this->MAX_RAD_LEVEL);
+}
 void Environment::setPsyLevelFilter(PsyLevel_t value)
 	{
 	if (value > this->MAX_LEVEL_PSY)

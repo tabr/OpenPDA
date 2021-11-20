@@ -40,6 +40,7 @@ class RadiomarkInstanceClass : public NodeExtended
 			RADIOMARK_TYPE_UNDERTAKER,        //new
 			RADIOMARK_TYPE_MAGIC,             //new
 			RADIOMARK_TYPE_DETECTOR,             //new
+			RADIOMARK_TYPE_RADIATION_NEUTRON_FLUX,             //new
 //			RADIOMARK_TYPE_ADM_ACTION,
 			};
 		
@@ -67,6 +68,20 @@ class RadiomarkInstanceClass : public NodeExtended
 		//RadiomarkContainer_t m_container[R_PARAMETERS_NUM+1];
 	};
 //template <RadiomarkInstanceClass m_>
+class RadiomarkRadiationNeutronFluxClass
+	{
+		public:
+    void ProcessSignal(uint8_t signalPower);
+	RadiomarkRadiationNeutronFluxClass (RadiomarkInstanceClass* R){
+		this->m_R           = R;
+	}
+	RadiomarkParameter_t GetRadiationMultiplier(void){
+		return this->m_R->GetParameter1();
+	}
+	protected:
+	private:
+	RadiomarkInstanceClass* m_R;
+	};
 class RadiomarkRadiationAnomayClass
 	{
 	public:

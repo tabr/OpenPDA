@@ -598,7 +598,7 @@ void PlayerClass::Die(void)
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_BIO:
       {
       sprintf (Lcd.lcd_buf, "био");
-      LcdString(10, LCD_LINE_1);
+      LcdString(1, LCD_LINE_1);
       }
     break;
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_CHEMICAL:
@@ -610,23 +610,23 @@ void PlayerClass::Die(void)
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_ELECTRICITY:
       {
       sprintf (Lcd.lcd_buf, "элект");
-      LcdString(10, LCD_LINE_1);
+      LcdString(1, LCD_LINE_1);
       sprintf (Lcd.lcd_buf, "рич");
-      LcdString(10, LCD_LINE_2);
+      LcdString(1, LCD_LINE_2);
       }
     break;
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_FIRE:
       {
       sprintf (Lcd.lcd_buf, "огонь");
-      LcdString(10, LCD_LINE_1);
+      LcdString(1, LCD_LINE_1);
       }
     break;
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_GRAVY:
       {
       sprintf (Lcd.lcd_buf, "грави");
-      LcdString(10, LCD_LINE_1);
-      sprintf (Lcd.lcd_buf, "тац");
-      LcdString(10, LCD_LINE_2);
+      LcdString(1, LCD_LINE_1);
+      sprintf (Lcd.lcd_buf, "тация");
+      LcdString(1, LCD_LINE_2);
       }
     break;
 
@@ -634,35 +634,44 @@ void PlayerClass::Die(void)
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_RADIATION_EXTERNAL:
       {
       sprintf (Lcd.lcd_buf, "радиа");
-      LcdString(10, LCD_LINE_1);
+      LcdString(1, LCD_LINE_1);
       sprintf (Lcd.lcd_buf, "ция");
-      LcdString(10, LCD_LINE_2);
+      LcdString(1, LCD_LINE_2);
       }
     break;
 
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_SELF:
       {
       sprintf (Lcd.lcd_buf, "сам");
-      LcdString(10, LCD_LINE_1);
+      LcdString(1, LCD_LINE_1);
       }
     break;
 
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_GRENADE:
       {
       sprintf (Lcd.lcd_buf, "гран");
-      LcdString(10, LCD_LINE_1);
+      LcdString(1, LCD_LINE_1);
       sprintf (Lcd.lcd_buf, "ата");
-      LcdString(10, LCD_LINE_2);
+      LcdString(1, LCD_LINE_2);
       }
     break;
 
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_GENERIC:
-      {
-      sprintf (Lcd.lcd_buf, "gene");
-      LcdString(10, LCD_LINE_1);
-      sprintf (Lcd.lcd_buf, "ric");
-      LcdString(10, LCD_LINE_2);
-      }
+    {
+	    sprintf (Lcd.lcd_buf, "gene");
+	    LcdString(1, LCD_LINE_1);
+	    sprintf (Lcd.lcd_buf, "ric");
+	    LcdString(1, LCD_LINE_2);
+    }
+    break;
+
+    case TemporaryClass::DamageSource::DAMAGE_SOURCE_BLOWOUT:
+    {
+	    sprintf (Lcd.lcd_buf, "выб");
+	    LcdString(1, LCD_LINE_1);
+	    sprintf (Lcd.lcd_buf, "рос");
+	    LcdString(1, LCD_LINE_2);
+    }
     break;
 
     case TemporaryClass::DamageSource::DAMAGE_SOURCE_NONE:
@@ -671,9 +680,9 @@ void PlayerClass::Die(void)
     default:
       {
       sprintf (Lcd.lcd_buf, "хз");
-      LcdString(10, LCD_LINE_1);
+      LcdString(1, LCD_LINE_1);
       sprintf (Lcd.lcd_buf, "%02d", this->lastDamagerSource);
-      LcdString(10, LCD_LINE_2);
+      LcdString(1, LCD_LINE_2);
       }
     break;
     }
@@ -843,8 +852,6 @@ void PlayerClass::DealDamage(DamageClass damage)
   #ifdef DEBUG_USART_FUNCTION_CALL
     sendString((char*)"[PlayerClass::dealDamage(DamageClass* damage)]");
   #endif
-  Vibro.activate(3);
-  this->PlayDelayedHitSound();
   
   uint16_t defence  = 0;
   DamageValue_t dmgValue  = damage.GetValue();
@@ -914,6 +921,16 @@ void PlayerClass::DealDamage(DamageClass damage)
       PlayerSuit->loseDurability(dmgValue);
       }
     }
+	if(GameCFG.IsGameUseParameter(GameConfig::CFG_CONFIGURATION_BITS_SUTE_USE_PU)){
+		if (defence >= dmgValue){
+			damage.CleanDamage();
+			return;
+		}
+		dmgValue -= defence;
+	}
+
+  Vibro.activate(3);
+  this->PlayDelayedHitSound();
   
   //3 - "PlayerEffects" - собственная защита
   defence  = this->GetSelfDefenceFrom(damage);
@@ -1172,7 +1189,8 @@ void PlayerClass::PsyToHealthProcess(void)
   }
 void PlayerClass::RadDoseToHealthProcess(void)
   {
-  uint8_t effectiveDoseInverted,effectiveRadLevel,dmg=0;
+  uint8_t effectiveDoseInverted,effectiveRadLevel;
+  uint16_t dmg=0;
   #ifdef DEBUG_USART_FUNCTION_CALL
     sendString((char*)"[PlayerClass::RadDoseToHealthProcess]");
   #endif
@@ -1192,6 +1210,11 @@ void PlayerClass::RadDoseToHealthProcess(void)
     {
     this->radDoseToHealthCollector++;
     }
+	//обработка нейтронного потока (не ионизирует)
+	if (Env.GetRadiationNeutronFluxLevel() > this->GetComplexDefenceFrom({value:1, damageSource:TemporaryClass::DAMAGE_SOURCE_RADIATION_EXTERNAL})){
+		effectiveRadLevel  = Env.GetRadiationNeutronFluxLevel()  - this->GetComplexDefenceFrom({value:1, damageSource:TemporaryClass::DAMAGE_SOURCE_RADIATION_EXTERNAL});
+		dmg += effectiveRadLevel;
+	}
   //тоесть, если уровень радиации - максимальный, дополнительно дамажу
 //  if (Env.radiationLevel > Player.getDefenceRadiation())
   if (Env.GetRadiationLevel() > this->GetComplexDefenceFrom({value:1, damageSource:TemporaryClass::DAMAGE_SOURCE_RADIATION_EXTERNAL}))
@@ -1219,8 +1242,10 @@ void PlayerClass::RadDoseToHealthProcess(void)
         }
       }
     }
-  if (dmg > 0)
-    {
+  if (dmg > 0){
+	  if (dmg > 255){
+		  dmg = 255;
+	  }
 //    this->dealDamage(dmg, TemporaryClass::DAMAGE_SOURCE_RADIATION_DOSE_INTERNAL, PlayerClass::AGRESSOR_TYPE_RADIATION, this->AGGRESSOR_SUBTYPE_NONE, DamageClass::AGGRESSOR_SOURCE_INTERNAL);
     this->DealDamage({value: dmg, damageSource:TemporaryClass::DAMAGE_SOURCE_RADIATION_DOSE_INTERNAL, aggressorSource:DamageClass::AGGRESSOR_SOURCE_INTERNAL});
     }
@@ -1301,7 +1326,8 @@ void PlayerClass::oneSecondPassed(void)
         this->PlayDeathSound();
         this->SetZombie(false);
         //LcdImage(ImageSkull);
-        PDAMenu.DrawImg(PDAImagesClass::IMAGES::IMG_SKULL);
+        //PDAMenu.DrawImg(PDAImagesClass::IMAGES::IMG_SKULL);
+		SelectedSkin->DrawPlayerDead();
         sprintf (Lcd.lcd_buf, "ПСИ");
         LcdString(10, LCD_LINE_1);
         sprintf (Lcd.lcd_buf, "изл");

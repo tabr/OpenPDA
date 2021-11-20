@@ -15,6 +15,7 @@ class Environment : public ITimerListener
   const static PsyLevel_t MAX_LEVEL_PSY        = 100;
   const static uint8_t RAD_FILTER_CACHE_LENGTH    = 8;
   const static uint8_t PSY_FILTER_CACHE_LENGTH    = 8;
+  const static uint16_t RAD_NEUTRON_FLUX_DMG_THRESHOLD = 512;
   //const static uint16_t ANOMALY_SOUND_THRESHOLD    = 200;
 //  uint8_t lastAnomalyType;
 //  uint8_t anomalyLevel;
@@ -23,10 +24,11 @@ class Environment : public ITimerListener
 
   void TimerUpdateEvent (uint8_t msPassed);
 
-  void process(void);                        //вызывается извне
+  void process(void);                        //вызывается извне 50ms
   void RadiationToDoseProcess(void);                  //вызывается извне
-  void RadLevelSet1(RadLevel_t value);
+  //void RadLevelSet1(RadLevel_t value);
   void RadLevelSetFilter(RadLevel_t value);
+  void RadiationNeutronFluxLevelSetFilter(RadLevel_t value);
 //  void AnomalyLevelSetFilter(uint8_t value, uint8_t anoType);
 //  void AnomalyLevelProcess(void);
   uint8_t GetPsyLevel(void);
@@ -35,11 +37,15 @@ class Environment : public ITimerListener
   void cleanPsyFilter(void);
   void setPsyLevelFilter(PsyLevel_t value);
   RadLevel_t GetRadiationLevel(void);
-  Percent_t GetRadiationLevelPercent(void);
+  Percent_t GetRadiationLevelPercent1(void);
+  Percent_t GetComplexRadiationLevelPercent(void);
+  RadLevel_t GetRadiationNeutronFluxLevel(void);
   Environment();
   protected:
   private:
     uint16_t radLevelSoundCounter=0;
+    uint16_t radNeutronLevelDmgCounter=0;
+    //uint16_t radNeutronLevelDmgCounterCnt=0;
 //    uint16_t anoLevelSoundCounter;
 //    uint8_t RadDoseCounter;
 //    uint8_t radFilterValue;
@@ -48,6 +54,9 @@ class Environment : public ITimerListener
     PsyLevel_t psyFilter[PSY_FILTER_CACHE_LENGTH];
     //RingBuffer<PSY_FILTER_CACHE_LENGTH> psyFilterR;
     RadLevel_t radFilter[RAD_FILTER_CACHE_LENGTH];
+
+    RadLevel_t RadiationNeutronFluxLevel=0;
+    RadLevel_t RadiationNeutronFluxFilter[RAD_FILTER_CACHE_LENGTH];
 
 };
 #endif

@@ -1,6 +1,7 @@
 #ifndef STALKER_UI_CLASS_H
 #define STALKER_UI_CLASS_H
 #include "strings.h"
+#include "STRClass.cpp"
 class StalkerUI_Class//TODO
 	{
 	public:

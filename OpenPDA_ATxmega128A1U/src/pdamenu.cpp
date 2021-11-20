@@ -203,7 +203,8 @@ void PDAMenuClass::menuItemSelected(PDAMenu_MainInterface* m)
 void PDAMenuClass::DeathScreen(void)
   {
   //LcdImage(ImageSkull);
-  PDAMenu.DrawImg(PDAImagesClass::IMAGES::IMG_SKULL);
+  //PDAMenu.DrawImg(PDAImagesClass::IMAGES::IMG_SKULL);
+  SelectedSkin->DrawPlayerDead();
   n3310LcdClass::RequestUpdate();
   }
 uint8_t PDAMenuClass::getSelectedMenuID(void)
