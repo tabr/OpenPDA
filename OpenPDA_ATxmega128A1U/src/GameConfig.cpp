@@ -36,7 +36,8 @@ bool GameConfig::load(void)
     1<<CFG_CONFIGURATION_BITS_GAME_USE_SUIT_DURABILITY |  //костюмы не ломаются. ВНИМАНИЕ! Если не включен, некоторый урон может вообще не проходить, т.к. костюмы работают в режиме ПределУрона!
     1<<CFG_CONFIGURATION_BITS_DEATH_COUNTER_STARTS_ONLY_AT_GRAVEYARD |
     1<<CFG_CONFIGURATION_BITS_REGEN_X3_IN_SAFE_ZONE | 
-	0<<CFG_CONFIGURATION_BITS_SUTE_USE_PU //not tested
+	0<<CFG_CONFIGURATION_BITS_SUTE_USE_PU, //not tested
+	1<<CFG_CONFIGURATION_BITS_REVIVE_AT_SAFE_ZONE //not tested
     ),
 //    TemporaryClass::DAMAGE_SOURCE_NUM,          //010
 //    this->getDamageSourceNum(),          //010

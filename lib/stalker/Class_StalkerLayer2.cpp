@@ -231,6 +231,12 @@ void Class_StalkerLayer2::EnvironmentProcess(void)
 					PDAMenu.DeathScreen();
 					}
 				}
+			else if(RMType == RadiomarkInstanceClass::RADIOMARK_TYPE_SAFE_SHELTER && GameCFG.IsGameUseParameter(GameConfig::CFG_CONFIGURATION_BITS_REVIVE_AT_SAFE_ZONE)){
+				if (Player.IsAwaitingGraveyard()){
+					Player.RenewDeathTimer();
+					PDAMenu.DeathScreen();
+				}
+			}
 			}
 //		sendString ((char*)"Player.isDead\r\n");
 		this->cleanBuf();//packet stuck fix
