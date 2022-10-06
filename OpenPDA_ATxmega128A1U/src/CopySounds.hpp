@@ -77,7 +77,7 @@ void copySounds(void)
 //          conv.value_int  = i;
           LcdStringUpdate(1,LCD_LINE_3, (char*)"Erase chk fail");
 //          sprintf(buf, "%u",cache[z]);
-          sprintf(Lcd.lcd_buf, "%05lu: %u", i, cache[z]);
+		  sprintf(buf, "%05lu: %u", (BLOCKS_TO_PROCESS-i), cache[z]);
 //          sprintf(buf, "%03d%03d %03d%03d", conv.byte_field.h, conv.byte_field.mh, conv.byte_field.ml, conv.byte_field.l);
           LcdStringUpdate(1,LCD_LINE_4, buf);
           sprintf(buf, "%03d %03d %03d", z, cache[z], MediaMemory.GetManufacturerID());
