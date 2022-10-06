@@ -1,3 +1,5 @@
+#include <algorithm>
+
 template <class T>
 void OpenPDA_UI_generic<T>::SetFlagCacheChanged(void){
   SetFlag(FLAG_0_CACHE_CHANGED);
@@ -105,6 +107,15 @@ void OpenPDA_UI_generic<T>::ShowImage(const uint8_t *imageData){
 
 #ifdef OPENPDA_UI_GRAPHICS_ENABLED
 
+template <class T>
+bool OpenPDA_UI_generic<T>::IsPointValid(const uint8_t x, const uint8_t y){
+  return (x < driver::LCD_WIDTH_PIXEL) && (y < driver::LCD_HEIGHT_PIXEL);
+}
+template <class T>
+bool OpenPDA_UI_generic<T>::IsPointInvalid(const uint8_t x, const uint8_t y){
+  return !(IsPointValid(x,y));
+}
+
 /*
  * Имя                   :  LcdLine
  * Описание              :  Рисует линию между двумя точками на дисплее (алгоритм Брезенхэма)
@@ -151,7 +162,7 @@ void OpenPDA_UI_generic<T>::LcdLineOrbitrary ( uint8_t x1, uint8_t y1, uint8_t x
     dy <<= 1;
 
     // Рисуем начальную точку
-    LcdPixel( x1, y1, mode );
+    driver::LcdPixel( x1, y1, mode );
 
     // Рисуем следующие точки до конца
     if ( dx > dy ){
@@ -164,7 +175,7 @@ void OpenPDA_UI_generic<T>::LcdLineOrbitrary ( uint8_t x1, uint8_t y1, uint8_t x
             x1 += stepx;
             fraction += dy;
 
-            LcdPixel( x1, y1, mode );
+            driver::LcdPixel( x1, y1, mode );
 
         }
     }
@@ -178,36 +189,48 @@ void OpenPDA_UI_generic<T>::LcdLineOrbitrary ( uint8_t x1, uint8_t y1, uint8_t x
             y1 += stepy;
             fraction += dx;
 
-            LcdPixel( x1, y1, mode );
+            driver::LcdPixel( x1, y1, mode );
         }
     }
 }
 
 template <class T>
 void OpenPDA_UI_generic<T>::LcdLineHorizontal  ( uint8_t x, uint8_t y, uint8_t length, uint8_t mode ){
-    if ( IsPointInalid(x, y)){
+    if ( IsPointInvalid(x, y)){
         return;
     }
-    uint16_t untill_x = x + length;
+    //uint16_t check_x = x + length;
+    //if (check_x > 0xFF ){
+    //  check_x = 0xFF;
+    //}
+    //uint8_t untill_x = check_x;
+    uint8_t untill_x = min(0xFF, x + length);
     for (;x++;x < untill_x ) {
-        if ( IsPointInalid(x, y)){ //now x is incremented
+        if ( IsPointInvalid(x, y)){ //now x is incremented
             return;
         }
-        LcdPixel( x, y, mode );
+        driver::LcdPixel( x, y, mode );
     }
 }
 
 template <class T>
 void OpenPDA_UI_generic<T>::LcdLineVertical  ( uint8_t x, uint8_t y, uint8_t length, uint8_t mode ){ //can be used a hack: each 8 bytes draw in 3 stages: [part or 0][bytes cycle or 0][part or 0]
-    if ( IsPointInalid(x, y)){
+    if ( IsPointInvalid(x, y)){
         return;
     }
-    uint16_t untill_y = y + length;
+    ////uint16_t untill_y = y + length;
+    //uint16_t check_y = y + length;
+    //if (check_y > 0xFF ){
+    //  check_y = 0xFF;
+    //}
+    //min(0xFF, y + length);
+    //uint8_t untill_y = check_y;
+    uint8_t untill_y = min(0xFF, y + length);
     for (;y++;y < untill_y ) {
-        if ( IsPointInalid(x, y)){ //now x is incremented
+        if ( IsPointInvalid(x, y)){ //now x is incremented
             return;
         }
-        LcdPixel( x, y, mode );
+        driver::LcdPixel( x, y, mode );
     }
 }
 #endif

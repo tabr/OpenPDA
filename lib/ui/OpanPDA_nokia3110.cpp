@@ -21,6 +21,11 @@ bool OpenPDA_Nokia3110DriverClass::IsPointValid(uint8_t x, uint8_t y){
 bool OpenPDA_Nokia3110DriverClass::IsPointInvalid(uint8_t x, uint8_t y){
   return !(IsPointValid(x, y));
 }
+void OpenPDA_Nokia3110DriverClass::LcdPixel ( uint8_t x, uint8_t y, uint8_t mode ){
+  if (mode <= PIXEL_LAST_ELEMENT){
+    LcdPixel(x, y, static_cast<LcdPixelMode>(mode));
+  }
+}
 void OpenPDA_Nokia3110DriverClass::LcdPixel ( uint8_t x, uint8_t y, LcdPixelMode mode ){
   uint16_t index;
   uint8_t offset;
@@ -203,6 +208,7 @@ void OpenPDA_Nokia3110DriverClass::HardwareInitialization(void){
     COMMAND_H0_SET_Y_ADDRESS_RAM_INSTRUCTION | (0 & Y_ADDRESS_MASK),//0b10000000,//0x80,//
     COMMAND_H0_SET_X_ADDRESS_RAM_INSTRUCTION | (0 & X_ADDRESS_MASK),//0b01000000,//0x40,//
     };
+  
   LcdSendCommandPacket(sizeof(commandPacket), commandPacket);
 
   ActivateDisplay();

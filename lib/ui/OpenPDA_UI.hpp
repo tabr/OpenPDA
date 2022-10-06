@@ -51,10 +51,11 @@ typedef T driver;
   static void DisplayBody(const char *buf, UI_BODY_LINE body_line, uint8_t char_x_position);
   static void DisplayBody(const char *buf, UI_BODY_LINE body_line);
 #ifdef OPENPDA_UI_GRAPHICS_ENABLED
-  static void LcdPixel ( uint8_t x, uint8_t y, uint8_t mode );//LcdPixelMode mode
   static void LcdLineHorizontal ( uint8_t x, uint8_t y, uint8_t length, uint8_t mode );//LcdPixelMode mode
   static void LcdLineVertical ( uint8_t x, uint8_t y, uint8_t length, uint8_t mode );//LcdPixelMode mode
   static void LcdLineOrbitrary  ( uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, uint8_t mode );//LcdPixelMode mode
+  static bool IsPointValid(const uint8_t x, const uint8_t y);
+  static bool IsPointInvalid(const uint8_t x, const uint8_t y);
 #endif //OPENPDA_UI_GRAPHICS_ENABLED
 /*
   

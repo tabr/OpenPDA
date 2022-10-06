@@ -1,6 +1,6 @@
 #pragma once
 
-#define LCD_MODE_CHAR //does not support graphics or DMA
+//#define LCD_MODE_CHAR //does not support graphics or DMA
 
 #include "TODOmacro.h"
 template <uint8_t b7, uint8_t b6, uint8_t b5, uint8_t b4, uint8_t b3, uint8_t b2, uint8_t b1, uint8_t b0>
@@ -22,7 +22,8 @@ public:
   enum LcdPixelMode {
     PIXEL_OFF,
     PIXEL_ON,
-    PIXEL_XOR
+    PIXEL_XOR,
+    PIXEL_LAST_ELEMENT = PIXEL_XOR
   };
   enum LCD_SYMBOLS {
     LCD_SYMBOL_EMPTY,
@@ -95,6 +96,7 @@ public:
   static uint16_t LcdCacheIdx;
 
   static void LcdSymbol (LCD_SYMBOLS symbol, uint8_t char_y_position, uint8_t char_x_position);
+  static void LcdPixel ( uint8_t x, uint8_t y, uint8_t mode );
   static void LcdPixel ( uint8_t x, uint8_t y, LcdPixelMode mode );
   static bool IsPointValid(uint8_t x, uint8_t y);
   static bool IsPointInvalid(uint8_t x, uint8_t y);
