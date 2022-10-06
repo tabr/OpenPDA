@@ -225,8 +225,8 @@ typedef Driver_IO_Pin(PORTD, 5) VBUSPin;
 typedef Driver_IO_Pin(PORTJ, 7) LcdBacklightInvertedPin;
 
 typedef Driver_IO_Pin(PORTF, 4) LcdPinBacklight;
-typedef Driver_IO_Pin(PORTE, 7) LcdPinCLK;
-typedef Driver_IO_Pin(PORTE, 5) LcdPinSDIN;
+typedef Driver_IO_Pin(PORTE, 5) LcdPinCLK;//because UART
+typedef Driver_IO_Pin(PORTE, 7) LcdPinSDIN;//because UART
 typedef Driver_IO_Pin(PORTE, 4) LcdPinDC;
 typedef Driver_IO_Pin(PORTE, 3) LcdPinSCE;
 typedef Driver_IO_Pin(PORTE, 2) LcdPinRST;
