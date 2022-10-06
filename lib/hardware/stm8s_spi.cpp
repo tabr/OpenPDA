@@ -89,7 +89,7 @@ public:
   const static uint8_t REGISTER_ICR_TXIE__TXBUFFER_NOT_EMPTY_INTERRUPT_MASKED   = 0<<REGISTER_ICR_TXIE;//TXNE interrupt masked
   const static uint8_t REGISTER_ICR_TXIE__TXBUFFER_NOT_EMPTY_INTERRUPT_ENABLED  = 1<<REGISTER_ICR_TXIE;//TXE interrupt not masked. This allows an interrupt request to be generated when the TXE flag is set.
   
-  static void InitTXMaxspeedMaster(void){
+  static void InitTRXMaxspeedMaster(void){
     SPI->CR1 = STM8S_SPI::REGISTER_CR1_CPHA__SECOND_EDGE | 
                STM8S_SPI::REGISTER_CR1_CPOL__SCK_TO_1 | 
                STM8S_SPI::REGISTER_CR1_MSTR__MASTER | 
@@ -102,7 +102,8 @@ public:
                STM8S_SPI::REGISTER_CR2_CRCNEXT__NEXT_TX_FROM_TXB | 
                STM8S_SPI::REGISTER_CR2_CRCEN__CRC_DISABLED | 
                STM8S_SPI::REGISTER_CR2_BDOE__OUTPUT_ENABLED | 
-               STM8S_SPI::REGISTER_CR2_BDM__ONE_LINE_BI_D_MODE;
+//               STM8S_SPI::REGISTER_CR2_BDM__ONE_LINE_BI_D_MODE;
+               STM8S_SPI::REGISTER_CR2_BDM__TWO_LINE_UNI_D_MODE;
   }
   static void SPIEnable(void){
     sbi(SPI->CR1, REGISTER_CR1_SPE);
@@ -110,7 +111,28 @@ public:
   static void SPIDisable(void){
     cbi(SPI->CR1, REGISTER_CR1_SPE);
   }
-  static void SPI_SendData(uint8_t Data){
+  static void SPI_RawWriteByte(uint8_t Data){
     SPI->DR = Data; /* Write in the DR register the data to be sent*/
+  }
+  static uint8_t SPI_RawReadByte(void){
+    return SPI->DR;
+  }
+  static void SPI_WaitTXComplete(void){
+      while ((SPI->SR & SPI_FLAG_RXNE) == RESET){
+          //polling
+      }
+  }
+  //<--- this work with RAW registers
+  //next works with own methods
+  static uint8_t SPI_SendData(uint8_t Data){//this will wait tx
+    SPI_RawWriteByte(Data);
+    SPI_WaitTXComplete();
+    return SPI_RawReadByte();
+  }
+  static void SPI_SendPacket(uint8_t* packet, uint8_t length){
+      SPI_WaitTXComplete();
+      for (uint8_t i=0;i < length;i++){
+          SPI_SendData(packet[i]);
+      }
   }
 };
