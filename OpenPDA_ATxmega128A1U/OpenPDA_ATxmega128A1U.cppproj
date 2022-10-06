@@ -303,7 +303,7 @@
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../lib</Value>
-      <Value>../../lib/games/20211121_GameDenis</Value>
+      <Value>../../lib/games/GameMalyar_20221007</Value>
       <Value>../../lib/neiverio</Value>
       <Value>../../lib/neiverio/XMega</Value>
       <Value>../src/ASF/xmega/drivers/cpu</Value>
