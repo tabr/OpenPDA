@@ -8,7 +8,8 @@ class  BackLightClass : public ITimerListener
   void  turnON(void);
   void  turnOFF(void);
   void  IOInit(void);
-    bool  isBacklightONInverted=false;
+  void  DefaultState(void);
+  bool  isBacklightONInverted(void);
   protected:
   private:
     uint8_t  turnOnTimer=0;

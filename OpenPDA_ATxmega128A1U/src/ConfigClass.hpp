@@ -33,13 +33,14 @@ class  ConfigClass
 
     ConfigClass(void);
     void  loadDefaultSettings(void);
-    bool  isParameterSet(uint8_t  parameter);
+    bool  isParameterSet(SETTINGS  parameter);
+    void  switchParameter(SETTINGS  parameter);
     void  switchParameter(uint8_t  parameter);
-    void  clearParameter(uint8_t  parameter);
-    void  setParameter(uint8_t  parameter);
+    void  clearParameter(SETTINGS  parameter);
+    void  setParameter(SETTINGS  parameter);
 
   protected:
   private:
-    void  parameterUpdated(uint8_t  parameter);
+    void  parameterUpdated(SETTINGS  parameter);
   };
 #endif

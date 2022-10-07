@@ -36,7 +36,7 @@ void BackLightClass::TimerUpdateEvent (uint8_t msPassed)
 
 void BackLightClass::turnON(void)
 	{
-	if (this->isBacklightONInverted)
+	if (this->isBacklightONInverted())
 		{
 		LcdPinBacklight::SetOutLow();
 		}
@@ -47,7 +47,7 @@ void BackLightClass::turnON(void)
 	}
 void BackLightClass::turnOFF(void)
 	{
-	if (this->isBacklightONInverted)
+	if (this->isBacklightONInverted())
 		{
 		LcdPinBacklight::SetOutHigh();
 		}
@@ -62,10 +62,16 @@ void BackLightClass::IOInit(void)
 	LcdBacklightInvertedPin::SetDirIn();
 	LcdBacklightInvertedPin::SetPullUp();
 	_delay_us(10);
-	if (LcdBacklightInvertedPin::IsPinHigh())
-		{
-		this->isBacklightONInverted	= true;
-		}
-	this->turnOFF();
+	//if (LcdBacklightInvertedPin::IsPinHigh())
+	//	{
+	//	this->isBacklightONInverted	= true;
+	//	}
+	this->DefaultState();
 	}
+void BackLightClass::DefaultState(void){
+	this->turnOFF();
+}
+bool BackLightClass::isBacklightONInverted(void){
+	return DeviceConfig.GetBL();
+}
 #endif

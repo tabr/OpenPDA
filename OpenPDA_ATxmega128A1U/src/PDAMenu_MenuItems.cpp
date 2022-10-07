@@ -1423,8 +1423,8 @@ void PDAMenu_DebugClass::Update(uint8_t msPassed)
 
 //  uint8_t tmp[3];
 //write DevID
-  uint8_t writeData[]={13};
-  ExternalEEPROMTWI::writeToDevice(0,0,1,writeData);
+  //uint8_t writeData[]={13};
+  //ExternalEEPROMTWI::writeToDevice(0,0,1,writeData);
   //_delay_ms(10);
 //  ExternalEEPROMTWI::readFromDevice(0,0, 3, tmp);
 //  uint8_t* tmp=MediaMemory.GetJDEC();

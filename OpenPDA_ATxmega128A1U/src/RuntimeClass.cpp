@@ -509,6 +509,74 @@ void RuntimeClass::Level4(void)
     LcdStringUpdate(1,LCD_LINE_2, (char*)"Completed     ");
   #endif
   }
+void PDA_CFG_menu(void){
+	enum CFG_PARAMETERS{
+		CFG_PARAMETER_BACKLIGHT_INVERSION,
+		CFG_PARAMETER_DEVID,
+		CFG_PARAMETER_NUM,
+		};
+	uint8_t selected_cfg = 0;
+	StalkerUI.ClearDisplay();
+	StalkerUI.DisplayMenuHead("PDACFG");
+	STRClass Str("center to exit");
+	StalkerUI.DisplayMenuBottom(Str);
+	
+	while (1){
+		if (Buttons.isButtonDown(ButtonsClass::BUTTON_DOWN_ENTER)){
+			if (++selected_cfg >= CFG_PARAMETER_NUM){
+				selected_cfg = 0;
+			}
+		}
+		else if (Buttons.isButtonDown(ButtonsClass::BUTTON_DOWN_ENTER)){
+			if (--selected_cfg >= CFG_PARAMETER_NUM){
+				selected_cfg = CFG_PARAMETER_NUM - 1;
+			}
+		}
+		if (Buttons.isButtonDown(ButtonsClass::BUTTON_CENTER_MENU)){
+			StalkerUI.ClearDisplay();
+			StalkerUI.DisplayMenuHead("Exiting...");
+			StalkerUI.RequestUpdate();
+			_delay_ms(1000);
+			return;
+		}
+		if (selected_cfg == CFG_PARAMETER_BACKLIGHT_INVERSION){
+			StalkerUI.DisplayMenuBody("backlight", StalkerUI_Class::UI_MENU_BODY_LINE::UI_MENU_BODY_LINE_0);
+			if (DeviceConfig.GetBL() == true){
+				StalkerUI.DisplayMenuBody("on ", StalkerUI_Class::UI_MENU_BODY_LINE::UI_MENU_BODY_LINE_1);
+			} else {
+				StalkerUI.DisplayMenuBody("off", StalkerUI_Class::UI_MENU_BODY_LINE::UI_MENU_BODY_LINE_1);
+			}
+			if (Buttons.isButtonDown(ButtonsClass::BUTTON_LEFT) || Buttons.isButtonDown(ButtonsClass::BUTTON_RIGHT)){
+				//DeviceConfig.WriteNewBL(!(DeviceConfig.GetBL()));
+				bool newbl = !(DeviceConfig.GetBL());
+				DeviceConfig.WriteNewBL(newbl);
+				//char str[14];
+				//sprintf(str, "written %01d", newbl);
+				//StalkerUI.DisplayMenuBody(str, StalkerUI_Class::UI_MENU_BODY_LINE::UI_MENU_BODY_LINE_2);
+			}
+			//char str[14];
+			//sprintf(str, "%03d", DeviceConfig.dev_flag);
+			//StalkerUI.DisplayMenuBody(str, StalkerUI_Class::UI_MENU_BODY_LINE::UI_MENU_BODY_LINE_3);
+		}
+		if (selected_cfg == CFG_PARAMETER_DEVID){
+			StalkerUI.DisplayMenuBody("devid    ", StalkerUI_Class::UI_MENU_BODY_LINE::UI_MENU_BODY_LINE_0);
+			DeviceID_t DID = DeviceConfig.GetID();
+			char str[14];
+			sprintf(str, "%03d", DID);
+			StalkerUI.DisplayMenuBody(str, StalkerUI_Class::UI_MENU_BODY_LINE::UI_MENU_BODY_LINE_1);
+			if (Buttons.isButtonDown(ButtonsClass::BUTTON_LEFT)){
+				DID--;
+				DeviceConfig.WriteNewDevID(DID);
+			}
+			if (Buttons.isButtonDown(ButtonsClass::BUTTON_RIGHT)){
+				DID++;
+				DeviceConfig.WriteNewDevID(DID);
+			}
+		}
+		StalkerUI.RequestUpdate();
+		_delay_ms(500);
+	}
+}
 void RuntimeClass::Level5(void)
   {
   SetLevel(RUNLEVEL_5);
@@ -528,6 +596,9 @@ void RuntimeClass::Level5(void)
   #endif
   
   //if (HAL.IO.IsPinLow(ButtonsClass::PIN_MENU_HAL))
+  if (Buttons.isButtonDown(ButtonsClass::BUTTON_DOWN_ENTER)){
+	  PDA_CFG_menu();
+  }
   if (Buttons.isButtonDown(ButtonsClass::BUTTON_CENTER_MENU))
     {
     while(1)

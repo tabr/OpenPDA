@@ -23,26 +23,31 @@ void ConfigClass::loadDefaultSettings(void)
 	this->clearParameter(SETTINGS::SETTINGS_NIGHT_MODE);
 //	this->clearParameter(ITEMS_USE_IMMIDIATELY);
 	}
-bool ConfigClass::isParameterSet(uint8_t parameter)
+bool ConfigClass::isParameterSet(SETTINGS parameter)
 	{
 	return (this->settings & (1<<parameter));
 	}
-void ConfigClass::switchParameter(uint8_t parameter)
+void ConfigClass::switchParameter(uint8_t parameter){
+	if (parameter < SETTINGS::SETTINGS_PARAMETERS_NUM){
+		this->switchParameter(static_cast<SETTINGS>(parameter));
+	}
+}
+void ConfigClass::switchParameter(SETTINGS parameter)
 	{
 	this->settings	^= 1<<parameter;
 	this->parameterUpdated(parameter);
 	}
-void ConfigClass::clearParameter(uint8_t parameter)
+void ConfigClass::clearParameter(SETTINGS parameter)
 	{
 	cbi(this->settings, parameter);
 	this->parameterUpdated(parameter);
 	}
-void ConfigClass::setParameter(uint8_t parameter)
+void ConfigClass::setParameter(SETTINGS parameter)
 	{
 	sbi(this->settings, parameter);
 	this->parameterUpdated(parameter);
 	}
-void ConfigClass::parameterUpdated(uint8_t parameter)
+void ConfigClass::parameterUpdated(SETTINGS parameter)
 	{
 	if (this->isParameterSet(ConfigClass::SETTINGS::SETTINGS_BACKLIGHT_ON))
 		{
