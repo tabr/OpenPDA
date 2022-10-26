@@ -459,26 +459,26 @@ void RuntimeClass::Level4(void)
 
     LcdStringUpdate(1,LCD_LINE_1, (char*)"4.5");
     
-    UsableItem.SetConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, 1, UsableItemClass::DEVICE_STATUS_OK, 0xFF, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_BANDAGE, UsableItemClass::DEVICE_STATUS_OK, 10, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_ANTIRAD, UsableItemClass::DEVICE_STATUS_OK, 8, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_VODKA, UsableItemClass::DEVICE_STATUS_OK, 100, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_RAD_PROTECTOR, UsableItemClass::DEVICE_STATUS_OK, 100, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, ItemsClass::ITEMID_PSY_BLOKADA, UsableItemClass::DEVICE_STATUS_OK, 130, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_ELSE, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_REPAIR_KIT, UsableItemClass::DEVICE_STATUS_OK, 255, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, GameConfig::SUIT_ID_SEVA, UsableItemClass::DEVICE_STATUS_OK, 100, 0, 0, 0);
-//    UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::SUIT_ID_SEVA, UsableItemClass::DEVICE_STATUS_OK, 208, 7, 0, 0);
-//    UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::SUIT_ID_SEVA, UsableItemClass::DEVICE_STATUS_OK, (uint16_t)1000, 0, 0);
-//    UsableItem.SetConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::SUIT_ID_ZARYA, UsableItemClass::DEVICE_STATUS_OK, 0xFF,0xFF, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, GameConfig::SUIT_ID_NONE, UsableItemClass::DEVICE_STATUS_OK, 0, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_INFORMATION, UsableItemClass::ITEM_SUBTYPE_NONE, ItemInformationClass::ID_FOUND_SEVA, UsableItemClass::DEVICE_STATUS_OK, 0, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_INFORMATION, UsableItemClass::ITEM_SUBTYPE_NONE, ItemInformationClass::ID_CODE, UsableItemClass::DEVICE_STATUS_OK, 0, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_INFORMATION, UsableItemClass::ITEM_SUBTYPE_NONE, ItemInformationClass::ID_GOOUT, UsableItemClass::DEVICE_STATUS_OK, 0, 0, 0, 0);
-    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_INFORMATION, UsableItemClass::ITEM_SUBTYPE_NONE, ItemInformationClass::ID_NONE, UsableItemClass::DEVICE_STATUS_OK, 8, 0, 0, 0);
-    
-    //UsableItem.setConnectedItem(1, 2, 3, 4, 5, 6, 7, 8);
-    UsableItem.WriteConnectedItem();
-    UsableItem.CleanConnectedItem();
+//    UsableItem.SetConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, 1, UsableItemClass::DEVICE_STATUS_OK, 0xFF, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_BANDAGE, UsableItemClass::DEVICE_STATUS_OK, 10, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_ANTIRAD, UsableItemClass::DEVICE_STATUS_OK, 8, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_VODKA, UsableItemClass::DEVICE_STATUS_OK, 100, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_RAD_PROTECTOR, UsableItemClass::DEVICE_STATUS_OK, 100, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_MEDICAMENTS, UsableItemClass::ITEM_SUBTYPE_NONE, ItemsClass::ITEMID_PSY_BLOKADA, UsableItemClass::DEVICE_STATUS_OK, 130, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_ELSE, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::ITEMID_REPAIR_KIT, UsableItemClass::DEVICE_STATUS_OK, 255, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, GameConfig::SUIT_ID_SEVA, UsableItemClass::DEVICE_STATUS_OK, 100, 0, 0, 0);
+////    UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::SUIT_ID_SEVA, UsableItemClass::DEVICE_STATUS_OK, 208, 7, 0, 0);
+////    UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::SUIT_ID_SEVA, UsableItemClass::DEVICE_STATUS_OK, (uint16_t)1000, 0, 0);
+////    UsableItem.SetConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, TemporaryClass::SUIT_ID_ZARYA, UsableItemClass::DEVICE_STATUS_OK, 0xFF,0xFF, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_SUIT, UsableItemClass::ITEM_SUBTYPE_NONE, GameConfig::SUIT_ID_NONE, UsableItemClass::DEVICE_STATUS_OK, 0, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_INFORMATION, UsableItemClass::ITEM_SUBTYPE_NONE, ItemInformationClass::ID_FOUND_SEVA, UsableItemClass::DEVICE_STATUS_OK, 0, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_INFORMATION, UsableItemClass::ITEM_SUBTYPE_NONE, ItemInformationClass::ID_CODE, UsableItemClass::DEVICE_STATUS_OK, 0, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_INFORMATION, UsableItemClass::ITEM_SUBTYPE_NONE, ItemInformationClass::ID_GOOUT, UsableItemClass::DEVICE_STATUS_OK, 0, 0, 0, 0);
+//    //UsableItem.setConnectedItem(UsableItemClass::ITEM_TYPE_INFORMATION, UsableItemClass::ITEM_SUBTYPE_NONE, ItemInformationClass::ID_NONE, UsableItemClass::DEVICE_STATUS_OK, 8, 0, 0, 0);
+//    
+//    //UsableItem.setConnectedItem(1, 2, 3, 4, 5, 6, 7, 8);
+//    UsableItem.WriteConnectedItem();
+//    UsableItem.CleanConnectedItem();
     /*
     char tmp[9];
     sprintf(tmp, "сталкер ");//последняя отбросится
