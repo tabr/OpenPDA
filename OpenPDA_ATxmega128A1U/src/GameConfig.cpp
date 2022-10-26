@@ -26,7 +26,7 @@ bool GameConfig::load(void)
 //    100,                        //003 максимальное ХП, которое игрок может накопить
 //    90,                          //004 кол-во ХП, с которым стартует Игрок
   uint8_t tmp[GameConfig::CFG_PARAMETERS::CFG_BYTE_SIZE]={
-    (((5)>>8) & 0xFF), (((5)>>0) & 0xFF),    //1+2 Время в секундах отсидки в мертвяке - 45мин [0-65535]
+    (((15*60)>>8) & 0xFF), (((15*60)>>0) & 0xFF),    //1+2 Время в секундах отсидки в мертвяке - 15мин [0-65535]
     100,                        //003 максимальная радиационная доза, которую может накопить игрок
     85,                          //003 уровень, при котором наносится двойной урон радиацией
     1,                          //004 множитель урона от радиации
@@ -36,8 +36,9 @@ bool GameConfig::load(void)
     1<<CFG_CONFIGURATION_BITS_GAME_USE_SUIT_DURABILITY |  //костюмы не ломаются. ВНИМАНИЕ! Если не включен, некоторый урон может вообще не проходить, т.к. костюмы работают в режиме ПределУрона!
     1<<CFG_CONFIGURATION_BITS_DEATH_COUNTER_STARTS_ONLY_AT_GRAVEYARD |
     1<<CFG_CONFIGURATION_BITS_REGEN_X3_IN_SAFE_ZONE | 
-	0<<CFG_CONFIGURATION_BITS_SUTE_USE_PU, //not tested
-	1<<CFG_CONFIGURATION_BITS_REVIVE_AT_SAFE_ZONE //not tested
+	1<<CFG_CONFIGURATION_BITS_SUTE_USE_PU | //not tested
+	1<<CFG_CONFIGURATION_BITS_REVIVE_AT_SAFE_ZONE | //not tested
+	0
     ),
 //    TemporaryClass::DAMAGE_SOURCE_NUM,          //010
 //    this->getDamageSourceNum(),          //010
