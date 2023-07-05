@@ -1,0 +1,21 @@
+#startup:
+press button on startup:
+center - packet dump mode.
+down - device CFG
+
+#storage:
+SPI flash(external) - souds, images, other big files
+TWI eeprom(external) - game configuration
+internal eeprom - device configuration
+
+
+#defines:
+LOAD_SOUNDS - write to SPI flash sounds and images (TODO: it should be whited vis USB). Just load and nothing else.
+MASTER_PDA - some gamemaster staff. Like items write, time sync.
+DEBUG_BUILD - ONLY for fw debug. Too buggy!
+TIMESYNC_BYPASS - fw will skip time packet wait.
+UNLIMITED_ITEMS - will skip decrement item count on use.
+FM_DISABLED - skip use FM module functionality. But anyway fw will checks it awailability.
+FAKE_ADC_POWER - ADC will says that battery always at 100%.
+SLOWLY_KILL - debug parameter. Periodically damage will be dealt.
+IDDQD - IDDQD

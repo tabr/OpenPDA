@@ -35,7 +35,7 @@ enum TFS_STRUCTURE_FILE_PARAMETERS //TODO
   {
   TFS_STRUCTURE_FILE_PARAMETER_FILE_NOT_EMPTY,
   };
-
+TODO("Move FileName from Head to data section. Leave inside head only FileNameLegnth. So data should starts with byte FileName: [FileName 0..255][data]")
 enum TFS_STRUCTURE_FAT //MAX 255 FILES        FILE[1..255]                                    FILE0
   {
   TFS_STRUCTURE_FAT_STARTS              = 0,

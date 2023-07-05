@@ -26,6 +26,7 @@
 #define cbi(port,bit)   port&=~(1<<bit);
 #define sbi(port,bit)   port|=(1<<bit);
 #define SELECTED_BYTE_ORDER   DEF_BYTE_ORDER_LITTLE_ENDIAN
+//#define TEMPORARY_CLASS_H
 //#define delay_ms		_delay_ms
 
 
@@ -274,7 +275,7 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
 
 
 
-  //eeprom_write_byte((uint8_t *) 0x00, 18);while(true){RedLEDPin::SetOutToggle();_delay_ms(100);};
+  //eeprom_write_byte((uint8_t *) 0x00, 13);while(true){RedLEDPin::SetOutToggle();_delay_ms(100);};
   //eeprom_write_byte((uint8_t *) 0x00, 3);
   uint8_t RID = eeprom_read_byte((uint8_t *) 0x00);
 //  #warning "[T] bad code style!"
