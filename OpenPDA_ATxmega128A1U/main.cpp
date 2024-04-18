@@ -107,7 +107,7 @@ static Singleton& instance()
 
 //#define MASTER_PDA
 //#define DEBUG_BUILD
-#define TIMESYNC_BYPASS
+//#define TIMESYNC_BYPASS
 //#define UNLIMITED_ITEMS
 #define FM_DISABLED
 //#define MONOLIT_PSY_SOUND_MUTE
