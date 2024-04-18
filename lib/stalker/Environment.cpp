@@ -90,14 +90,17 @@ void Environment::RadiationNeutronFluxLevelSetFilter(RadLevel_t value)
 		value	= this->MAX_RAD_LEVEL;
 		}
 
-	uint16_t sum=0;
+	uint16_t sum=this->RadiationNeutronFluxFilter[0];
 	for (uint8_t i=0;i<this->RAD_FILTER_CACHE_LENGTH-1;i++)
 		{
-		sum					+= this->RadiationNeutronFluxFilter[i];
+		sum					+= this->RadiationNeutronFluxFilter[i+1];
 		this->RadiationNeutronFluxFilter[i]	= this->RadiationNeutronFluxFilter[i+1];
 		}
+	this->RadiationNeutronFluxLevel			= (sum + value)/(RAD_FILTER_CACHE_LENGTH+1);
+	if (value > 0){//filter slowly decrease
+		value--;
+	}
 	this->RadiationNeutronFluxFilter[this->RAD_FILTER_CACHE_LENGTH-1]	= value;
-	this->RadiationNeutronFluxLevel			= (sum + value)/RAD_FILTER_CACHE_LENGTH;
 
 	Lcd.IsEnvRadLevelNeedRedraw	= true;
 	}
@@ -120,14 +123,17 @@ void Environment::RadLevelSetFilter(RadLevel_t value)
 
 	this->radiationLevel	= (this->radFilter[0] + this->radFilter[1] + this->radFilter[2] + this->radFilter[3] + this->radFilter[4] + this->radFilter[5] + this->radFilter[6] + this->radFilter[7]) >> 3;
 	*/
-	uint16_t sum=0;
+	uint16_t sum=this->radFilter[0];
 	for (uint8_t i=0;i<this->RAD_FILTER_CACHE_LENGTH-1;i++)
 		{
-		sum					+= this->radFilter[i];
+		sum					+= this->radFilter[i+1];
 		this->radFilter[i]	= this->radFilter[i+1];
 		}
+	this->radiationLevel			= (sum + value)/(RAD_FILTER_CACHE_LENGTH + 1);
+	if (value > 0){//radfilter slowly decrease
+		value--;
+	}
 	this->radFilter[this->RAD_FILTER_CACHE_LENGTH-1]	= value;
-	this->radiationLevel			= (sum + value)/RAD_FILTER_CACHE_LENGTH;
 
 	Lcd.IsEnvRadLevelNeedRedraw	= true;
 	}
