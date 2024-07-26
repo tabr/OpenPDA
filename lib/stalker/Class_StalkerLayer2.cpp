@@ -91,7 +91,7 @@ void Class_StalkerLayer2::EnvironmentLookAround(void)
 				{
 				break;//exit
 				}
-			if (this->bufPointer == (Class_HAL::MAX_ENV_PACKETS_IN_TRANSACTION - 1))// very weird!
+			if (this->bufPointer >= (Class_HAL::MAX_ENV_PACKETS_IN_TRANSACTION - 1))// very weird!
 				{
 				break;//exit
 				}

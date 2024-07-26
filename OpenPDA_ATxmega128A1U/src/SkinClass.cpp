@@ -111,6 +111,100 @@ void GenericSkinClass::UpdatePlayerDead(void)
   STRClass Str(STRPOS_STR_DEATH_TIME_REMAIN_FORMAT);
   Str.WriteFormat(Lcd.lcd_buf, Player.GetDeathTimeRemain());
   StalkerUI.DisplayMenuBody(&Str, StalkerUI_Class::UI_MENU_BODY_LINE_1);
+  #warning "RAM strings"
+  switch (Player.lastDamagerSource)
+  {
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_BIO:
+	  {
+		  sprintf (Lcd.lcd_buf, "био");
+		  LcdString(1, LCD_LINE_1);
+	  }
+	  break;
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_CHEMICAL:
+	  {
+		  sprintf (Lcd.lcd_buf, "химия");
+		  LcdString(10, LCD_LINE_1);
+	  }
+	  break;
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_ELECTRICITY:
+	  {
+		  sprintf (Lcd.lcd_buf, "элект");
+		  LcdString(1, LCD_LINE_1);
+		  sprintf (Lcd.lcd_buf, "рич");
+		  LcdString(1, LCD_LINE_2);
+	  }
+	  break;
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_FIRE:
+	  {
+		  sprintf (Lcd.lcd_buf, "огонь");
+		  LcdString(1, LCD_LINE_1);
+	  }
+	  break;
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_GRAVY:
+	  {
+		  sprintf (Lcd.lcd_buf, "грави");
+		  LcdString(1, LCD_LINE_1);
+		  sprintf (Lcd.lcd_buf, "тация");
+		  LcdString(1, LCD_LINE_2);
+	  }
+	  break;
+
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_RADIATION_DOSE_INTERNAL:
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_RADIATION_EXTERNAL:
+	  {
+		  sprintf (Lcd.lcd_buf, "радиа");
+		  LcdString(1, LCD_LINE_1);
+		  sprintf (Lcd.lcd_buf, "ция");
+		  LcdString(1, LCD_LINE_2);
+	  }
+	  break;
+
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_SELF:
+	  {
+		  sprintf (Lcd.lcd_buf, "сам");
+		  LcdString(1, LCD_LINE_1);
+	  }
+	  break;
+
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_GRENADE:
+	  {
+		  sprintf (Lcd.lcd_buf, "гран");
+		  LcdString(1, LCD_LINE_1);
+		  sprintf (Lcd.lcd_buf, "ата");
+		  LcdString(1, LCD_LINE_2);
+	  }
+	  break;
+
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_GENERIC:
+	  {
+		  sprintf (Lcd.lcd_buf, "gene");
+		  LcdString(1, LCD_LINE_1);
+		  sprintf (Lcd.lcd_buf, "ric");
+		  LcdString(1, LCD_LINE_2);
+	  }
+	  break;
+
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_BLOWOUT:
+	  {
+		  sprintf (Lcd.lcd_buf, "выб");
+		  LcdString(1, LCD_LINE_1);
+		  sprintf (Lcd.lcd_buf, "рос");
+		  LcdString(1, LCD_LINE_2);
+	  }
+	  break;
+
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_NONE:
+	  case TemporaryClass::DamageSource::DAMAGE_SOURCE_NUM:
+	  //    case TemporaryClass::DamageSource::DAMAGE_SOURCE:
+	  default:
+	  {
+		  sprintf (Lcd.lcd_buf, "хз");
+		  LcdString(1, LCD_LINE_1);
+		  sprintf (Lcd.lcd_buf, "%02d", Player.lastDamagerSource);
+		  LcdString(1, LCD_LINE_2);
+	  }
+	  break;
+  }
   }
 void GenericSkinClass::UpdatePlayerAwaitingGraveyard(void)
   {

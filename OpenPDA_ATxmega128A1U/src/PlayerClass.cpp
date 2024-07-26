@@ -592,6 +592,7 @@ void PlayerClass::Die(void)
 
 
   PDAMenu.SelectDefaultMenu();
+  /*
   #warning "RAM strings"
   switch (this->lastDamagerSource)
     {
@@ -686,8 +687,12 @@ void PlayerClass::Die(void)
       }
     break;
     }
+    //sprintf (Lcd.lcd_buf, "%02d", this->lastDamagerSource);
+    //LcdString(12, LCD_LINE_4);
+	*/
   
   n3310LcdClass::RequestUpdate();
+  //_delay_ms(1000);
   /*
   if (this->isZombie())
     {
